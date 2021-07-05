@@ -1,0 +1,31 @@
+{
+    "patient":
+    {
+        "id":1,
+        "name":"Niki",
+        "phone":"123456789",
+        "email":"yofan.ixe@gmail.com",
+        "jenis_kelamin":"Laki - Laki",
+        "tanggal_lahir":"24-08-1999",
+        "alamat":"Banyuwangi"
+    },
+    "monitoring_location":{
+        "latitude":"-8.455762646839869 ",
+        "longitude":"114.26299020120373"
+    },
+    "close_contacts":[
+        {
+            "id":1,
+            "patient_id":1,
+            "address":"Jalan Raya Jember No.KM13, Kawang, Labanasem, Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68461",
+            "name":"nini",
+            "relationship":"saudara",
+            "duration":"2 menit",
+            "time":"tadi sore",
+            "date":"2021-09-21",
+            "latitude":"-8.294104228156135",
+            "longitude":"114.3069976677967",
+            "created_at":"2021-06-19T06:47:28.000000Z",
+            "updated_at":"2021-06-19T06:47:28.000000Z"
+        }
+            ],"device_type":"Pulse Oximetry","monitoring_result":{"averrage_spo2":"99","status":"normal","recomendation":"tetap jaga kesehatan anda dengan patuhi protokol kesehatan"}}
