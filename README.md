@@ -1,5 +1,26 @@
 # Manajemen Pasien Gejala Hipoksia Terintegrasi Berbasis Web
 
+
+
+
+
+<p align="center">
+  <br>
+  <img src="https://i.ibb.co/ssb5mKk/amado.png">
+  <br>
+  <b style="font-size:25px; ">Amado Web App</b>
+  <br>
+  <br>
+  <img src="https://img.shields.io/github/v/release/yofan2408/amado-web-app?style=for-the-badge">
+  <img src="https://img.shields.io/badge/PHP-7.4.4-blue?style=for-the-badge">
+  <img src="https://img.shields.io/badge/LARAVEL-8-blue?style=for-the-badge">
+  <img src="https://img.shields.io/github/contributors/yofan2408/amado-web-app?color=blue&style=for-the-badge">
+  <img src="https://img.shields.io/github/last-commit/yofan2408/amado-web-app?style=for-the-badge">
+</p>
+
+
+
+
 ## Tentang
 
 Aplikasi Web ini ditujukan kepada pihak instansi kesehatan untuk mempermudah pengelolaan pasien gejala Hipoksia yang sering diderita oleh pasien Covid-19 saat ini. Fitur yang ditawarkan pada aplikasi web ini adalah pengelolaan data pasien, mengetahui lokasi pasien yang melakukan monitoring, data rekam medis pasien, dan daftar kontak erat yang dimiliki oleh pasien yang diisi melalui aplikasi android yang terintegrasi dengan aplikasi web ini.
