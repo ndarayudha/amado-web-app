@@ -26,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * TODO : Nanti route disesuaikan dengan Laravel 8
  */
+
 Route::middleware('auth')->group(function () {
 	Route::get('/', [HomeController::class, 'index'])->name('home');
 	Route::view('/setting', 'setting')->name('setting')->middleware('can:isAdmin');
@@ -33,16 +34,6 @@ Route::middleware('auth')->group(function () {
 	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 	Route::post('/user/datatables', [UserController::class, 'datatables'])->name('user.datatables')->middleware('can:isAdmin');
-
-	// Route::prefix('rack')->name('rack.')->group(function () {
-	// 	Route::view('/', 'rack')->name('index');
-	// 	Route::post('/search', [RackController::class, 'search'])->name('search');
-	// });
-
-	// Route::prefix('book')->name('book.')->group(function () {
-	// 	Route::post('/datatables', [BookController::class, 'datatables'])->name('datatables');
-	// 	Route::post('/search', [BookController::class, 'search'])->name('search');
-	// });
 
 	Route::prefix('patient')->name('patient.')->group(function () {
 		Route::post('/datatables', [PatientController::class, 'datatables'])->name('datatables');
@@ -56,29 +47,12 @@ Route::middleware('auth')->group(function () {
 		Route::get('/print-excel/{id}', [MedicalRecordController::class, 'exportOxygenExel'])->name('print-excel');
 	});
 
-	// Route::prefix('lokasi')->name('lokasi.')->group(function () {
-	// 	Route::post('/pasien', [LokasiController::class, 'show'])->name('show');
-	// });
 
 	Route::prefix('member')->name('member.')->group(function () {
 		Route::post('/datatables', [MemberController::class, 'datatables'])->name('datatables');
 		Route::post('/search', [MemberController::class, 'search'])->name('search');
 	});
 
-	// Route::prefix('monitoring')->group(function () {
-	// 	Route::get('/', [MedicalRecordController::class, 'getMonitoringResult']);
-	// });
-
-	// Route::prefix('member')->name('member.')->group(function () {
-	// 	Route::post('/datatables', [MemberController::class, 'datatables'])->name('datatables');
-	// 	Route::post('/search', [MemberController::class, 'search'])->name('search');
-	// });
-
-	// Route::prefix('loan')->name('loan.')->group(function () {
-	// 	Route::post('/datatables', [LoanController::class, 'datatables'])->name('datatables');
-	// 	Route::view('/return', 'loan.return')->name('return');
-	// 	Route::view('/extend', 'loan.extend')->name('extend');
-	// });
 
 	Route::resource('book', BookController::class);
 	Route::resource('patient', PatientController::class);
