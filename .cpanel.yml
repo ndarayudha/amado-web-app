@@ -3,7 +3,6 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/amaw5221/public_html/
     - export APPPATH=/home/amaw5221/amado/
-    - /bin/cp .env.example .env $APPPATH
     - /bin/cp -R public $DEPLOYPATH
     - /bin/cp -a * $APPPATH
     
