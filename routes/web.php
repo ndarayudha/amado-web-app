@@ -10,6 +10,7 @@ use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\Web\ClientController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +28,12 @@ use Illuminate\Support\Facades\Route;
  * TODO : Nanti route disesuaikan dengan Laravel 8
  */
 
+Route::get('/', [ClientController::class, 'index']);
+
+
+
 Route::middleware('auth')->group(function () {
-	Route::get('/', [HomeController::class, 'index'])->name('home');
+	Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
 	Route::view('/setting', 'setting')->name('setting')->middleware('can:isAdmin');
 
 	Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

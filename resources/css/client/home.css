@@ -1,0 +1,556 @@
+@import "../util/reset.css";
+@import "../util/global.css";
+@import "../util/animation.css";
+@import "../../library/font-awesome/css/all.css";
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 20px 100px;
+    background-color: var(--white-main);
+    box-shadow: var(--shadow-bottom);
+}
+.toogle {
+    display: none;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+.nav-logo-title {
+    margin-left: 10px;
+    font-size: 1.8rem;
+    color: var(--blue-main);
+    font-weight: 500;
+}
+.nav-logo-title span {
+    color: var(--blue-light);
+}
+.nav-logo img {
+    height: 40px;
+}
+.nav-list {
+    display: flex;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.nav-list li {
+    margin-left: 30px;
+}
+.home {
+    padding: 120px 100px;
+    width: 100%;
+    height: 80vh;
+}
+.description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: start;
+}
+
+.home img {
+    width: 450px;
+}
+.home .home-title-first,
+.home .home-title-second {
+    font-size: 3em;
+    font-weight: 400;
+}
+.home-title-second {
+    color: var(--blue-light);
+}
+.home p {
+    font-weight: 300;
+    margin: 25px 0;
+    font-size: 1rem;
+    word-spacing: 3px;
+    line-height: 2rem;
+}
+dl,
+ol,
+ul {
+    margin-bottom: 0rem;
+}
+.title {
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    color: var(--font-black-main);
+}
+.about {
+    margin-top: 50px;
+}
+.about img {
+    width: 450px;
+}
+.about .content-title {
+    font-size: 1.5rem;
+}
+.about .description {
+    width: 50%;
+}
+.about .description p {
+    font-weight: 300;
+    margin: 20px 0;
+    font-size: 1rem;
+    word-spacing: 3px;
+    line-height: 2rem;
+}
+.how-it-works {
+    padding: 0 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.how-it-works .content {
+    margin-top: 20px;
+}
+.card {
+    display: flex;
+    padding: 10px 15px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 280px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border: none;
+    margin-bottom: 20px;
+}
+.card .circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--blue-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-main);
+}
+.card h4 {
+    margin: 10px;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+.card p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.3rem;
+}
+.application {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.application img {
+    width: 500px;
+    animation: bounceTop_01 3s ease infinite;
+}
+.application h2 {
+    color: var(--font-black-main);
+    font-weight: 600;
+    font-size: 3rem;
+}
+.application p {
+    margin: 20px 0;
+    line-height: 1.3rem;
+}
+.site-footer {
+    background-color: var(--blue-main);
+    padding: 45px 0 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: var(--white-dark);
+}
+.site-footer hr {
+    border-top-color: #bbb;
+    opacity: 0.5;
+}
+.site-footer hr.small {
+    margin: 20px 0;
+}
+.site-footer h6 {
+    color: #fff;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-top: 5px;
+    letter-spacing: 2px;
+}
+.site-footer a {
+    color: #737373;
+}
+.site-footer a:hover {
+    color: #3366cc;
+    text-decoration: none;
+}
+.footer-links {
+    padding-left: 0;
+    list-style: none;
+}
+.footer-links li {
+    display: block;
+}
+.footer-links a {
+    color: var(--white-dark);
+}
+.footer-links a:active,
+.footer-links a:focus,
+.footer-links a:hover {
+    color: var(--font-black-main);
+    text-decoration: none;
+}
+.footer-links.inline li {
+    display: inline-block;
+}
+.site-footer .social-icons {
+    text-align: right;
+}
+.site-footer .social-icons a {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin-left: 6px;
+    margin-right: 0;
+    border-radius: 100%;
+    background-color: var(--white-dark);
+}
+.copyright-text {
+    margin: 0;
+}
+.social-icons {
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.social-icons li {
+    display: inline-block;
+    margin-bottom: 4px;
+}
+.social-icons li.title {
+    margin-right: 15px;
+    text-transform: uppercase;
+    color: #96a2b2;
+    font-weight: 700;
+    font-size: 13px;
+}
+.social-icons a {
+    background-color: #eceeef;
+    color: #818a91;
+    font-size: 16px;
+    display: inline-block;
+    line-height: 44px;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    margin-right: 8px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+.social-icons a:active,
+.social-icons a:focus,
+.social-icons a:hover {
+    color: #fff;
+    background-color: #29aafe;
+}
+.social-icons.size-sm a {
+    line-height: 34px;
+    height: 34px;
+    width: 34px;
+    font-size: 14px;
+}
+.social-icons a.instagram:hover {
+    background-color: #ea4c89;
+}
+
+input + label {
+    position: fixed;
+    right: 40px;
+    height: 35px;
+    width: 30px;
+    z-index: 5;
+    display: none;
+}
+input{
+    opacity: 0;
+}
+input + label span{
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    top: 50%;
+    margin-top: -1px;
+    left: 0;
+    display: block;
+    background: var(--blue-main);
+    transition: .5s;
+    z-index: 999;
+}
+input + label span:first-child {
+    top: 7px; 
+}
+input + label span:last-child {
+    top: 28px; 
+}
+label:hover {
+    cursor: pointer;
+}      
+input:checked + label span {
+    opacity: 0;
+    top: 50%;
+}
+input:checked + label span:first-child {
+    opacity: 1;
+    transform: rotate(405deg);
+}
+input:checked + label span:last-child {
+    opacity: 1;
+    transform: rotate(-405deg);
+}
+
+
+@media (max-width: 1125px) {
+    .nav-logo-title {
+        font-size: 1.5rem;
+    }
+    .btn-first,
+    .btn-second {
+        padding: 5px 12px;
+    }
+}
+@media (max-width: 991px) {
+    nav {
+        padding: 20px 50px;
+    }
+    .site-footer [class^="col-"] {
+        margin-bottom: 30px;
+    }
+    .nav-logo-title {
+        display: none;
+    }
+    .home img {
+        width: 350px;
+    }
+    .home {
+        padding: 120px 0px;
+    }
+    .about img {
+        width: 380px;
+    }
+    .title {
+        margin-bottom: 30px;
+    }
+    .title h2 {
+        font-size: 1.5rem;
+    }
+    .about .content-title {
+        font-size: 1.3rem;
+    }
+    article.about {
+        padding: 100px 0;
+    }
+    .about .description p {
+        font-size: 0.9rem;
+    }
+    .card {
+        width: 260px;
+        margin: 0 5px 20px 0;
+    }
+    .application h2 {
+        font-size: 2rem;
+    }
+    .application img {
+        width: 400px;
+    }
+}
+@media (max-width: 767px) {
+    input + label{
+        display: block;
+    }
+    input ~ .navigation{
+        background: white;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        transition: 0.5s;
+    }
+    input ~ .navigation .nav-list{
+        display: block;
+        text-align: center;
+        position: absolute;
+        top: 30%;
+        left: 20%;
+        right: 20%;
+    }
+    input ~ .navigation > .nav-list > li{
+        opacity: 0;
+        margin: 25px 0;
+        transition: 0.5s;
+        transition-delay: 0s;
+    }
+    input:checked ~ .navigation {
+        height: 100%;
+    }
+    input:checked ~ .navigation > .nav-list > li {
+        opacity: 1;
+        transition-delay: 0.5s;
+    } 
+    .nav-list {
+        display: flex;
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    .home .home-title-first,
+    .home .home-title-second {
+        font-size: 2em;
+        font-weight: 400;
+    }
+    .site-footer {
+        padding-bottom: 0;
+    }
+    .site-footer .copyright-text,
+    .site-footer .social-icons {
+        text-align: center;
+    }
+    .nav-list {
+        display: none;
+    }
+    .toogle,
+    .close {
+        display: block;
+        font-size: 30px;
+        color: var(--blue-main);
+        cursor: pointer;
+    }
+    .close {
+        display: block;
+    }
+    .description {
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    .home .image {
+        text-align: center;
+    }
+    .home img {
+        margin-top: 30px;
+        width: 300px;
+    }
+    .home {
+        height: 100vh;
+    }
+    .about .content {
+        text-align: center;
+    }
+    .about .description {
+        width: 100%;
+    }
+    .about .content-title {
+        margin-top: 20px;
+    }
+    .about img {
+        width: 300px;
+    }
+    div#item {
+        display: flex;
+        justify-content: center;
+    }
+    .card {
+        width: 300px;
+        height: 240px;
+        margin: 0 5px 20px 0;
+    }
+    .application .image {
+        text-align: center;
+        margin-top: 50px;
+    }
+}
+@media (max-width: 576px) {
+    nav {
+        padding: 10px 20px;
+    }
+    .about .description p {
+        padding: 0 30px;
+    }
+    .home .home-title-first,
+    .home .home-title-second {
+        font-size: 1.5em;
+        font-weight: 400;
+    }
+    .home p {
+        font-weight: 300;
+        font-size: 0.8rem;
+        word-spacing: 3px;
+        line-height: 1.3rem;
+
+        padding: 0 30px;
+    }
+    .home img {
+        margin-top: 30px;
+        width: 200px;
+    }
+    .title h2 {
+        font-size: 1.2rem;
+    }
+    .about img {
+        width: 200px;
+    }
+    .about .content-title {
+        font-size: 1rem;
+    }
+    .about .description p {
+        font-size: 0.8rem;
+    }
+    .about .description p {
+        line-height: 1.6rem;
+    }
+    .application h2 {
+        font-size: 1.2rem;
+    }
+    .application p {
+        font-size: 0.8rem;
+        padding: 0 40px;
+        overflow: hidden;
+    }
+    .application img {
+        width: 240px;
+    }
+    .row > * {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .how-it-works {
+        padding: 0;
+    }
+    figure {
+        margin: 0;
+        padding: 0;
+    }
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    ul.nav-logo {
+        padding-left: 0;
+    }
+    .nav-list {
+        font-size: 1.2rem;
+    }
+}
