@@ -5,4 +5,3 @@ deployment:
     - export APPPATH=/home/amaw5221/amado/
     - /bin/cp -R public $DEPLOYPATH
     - /bin/cp -a * $APPPATH
-    
