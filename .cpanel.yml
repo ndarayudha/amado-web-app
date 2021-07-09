@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/amaw5221/public_html/
-    - /bin/cp -a * $APPPATH
+    - /bin/cp -a * $DEPLOYPATH
