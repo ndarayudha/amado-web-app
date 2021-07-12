@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Device;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\HardwareService\Implement\PulseOximetryService;
+use Exception;
 
 const EXIST = false;
 
@@ -20,11 +21,19 @@ class PulseOximetryController extends Controller
 
     public function storeDataSensor(Request $request)
     {
-        $this->oximetryService->storeSensorData($request);
+        $result = $this->oximetryService->storeSensorData($request);
 
-        return response()->json([
-            'message' => 'data berhasil di simpan'
-        ], 200);
+        try {
+            if ($result) {
+                return response()->json([
+                    'message' => 'data berhasil di simpan'
+                ], 200);
+            }
+        } catch (Exception $e) {
+            return response()->json([
+                'message' => $e
+            ]);
+        }
     }
 
 

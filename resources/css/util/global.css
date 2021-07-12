@@ -17,12 +17,14 @@
 a {
     text-decoration: none;
     color: var(--font-black-main);
+    transition: 0.25s;
 }
 article {
     padding: 100px;
 }
 button {
     border: none;
+    transition: 0.25s;
 }
 body {
     font-family: "Poppins", sans-serif;
@@ -33,12 +35,14 @@ body {
     padding: 10px 20px;
     border-radius: 5px;
 }
-.btn-first:hover {
-    background-color: var(--blue-main-light);
+.btn-first:hover,
+.btn-first:focus {
+    box-shadow: inset 10em 0 0 0 var(--blue-main-light);
     color: white;
 }
-.btn-second:hover {
-    background-color: var(--blue-light-2);
+.btn-second:hover, 
+.btn-second:focus {
+    box-shadow: inset 10em 0 0 0 var(--blue-light-2);
     color: white;
 }
 .btn-second {

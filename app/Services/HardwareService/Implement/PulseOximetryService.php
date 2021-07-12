@@ -30,18 +30,25 @@ class PulseOximetryService implements HardwareService
     {
 
         $sensorData = $data->except('serial_number');
+        $backupExist = $data->has('backup');
+
         $serialNumberDevice = $data->serial_number;
+
 
         // cek apakah status device aktif
         $deviceStatus = $this->repositoryOximeter->getDeviceStatus($serialNumberDevice);
 
-        if ($sensorData != null && $deviceStatus === DEVICE_ACTIVATED) {
+
+        if ($backupExist && $deviceStatus === DEVICE_ACTIVATED) {
             // simpan data sensor
+            $result = $this->repositoryOximeter->storeTxt($serialNumberDevice, $sensorData);
+            return $result;
+        } else if ($sensorData !== null && $deviceStatus === DEVICE_ACTIVATED) {
             $result = $this->repositoryOximeter->store($sensorData, $serialNumberDevice);
             return $result;
         }
 
-        return;
+        return false;
     }
 
     public function getSensorData($serial_number)

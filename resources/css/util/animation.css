@@ -4,7 +4,7 @@
         transform: translateY(-30px);
     }
     50% {
-        transform: translateY(0px);
+        transform: translateY(10px);
     }
 }
 @keyframes pulse_01 {

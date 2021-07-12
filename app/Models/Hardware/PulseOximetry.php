@@ -16,7 +16,8 @@ class PulseOximetry extends Model
         'spo2',
         'bpm',
         'latitude',
-        'longitude'
+        'longitude',
+        'backup-data'
     ];
 
     /**

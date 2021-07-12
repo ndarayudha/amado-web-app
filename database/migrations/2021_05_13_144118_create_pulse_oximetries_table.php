@@ -20,6 +20,7 @@ class CreatePulseOximetriesTable extends Migration
             $table->string('bpm');
             $table->string('latitude');
             $table->string('longitude');
+            $table->string('backup-data')->nullable();
             $table->foreign('user_device_id')
                 ->references('id')
                 ->on('user_devices')

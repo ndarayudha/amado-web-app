@@ -1025,7 +1025,10 @@ Response:
 {
     "serial_number" : "serial_number_device",
     "spo2": 99,
-    "bpm": 90
+    "bpm": 90,
+    "latitude": 2174217214,
+    "longitude": 21429114204,
+    "backup": "file-backup.txt"
 }
 ```
 <!-- ============= INSERT SENSOR END ============= -->

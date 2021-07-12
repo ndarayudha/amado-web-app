@@ -3,10 +3,11 @@
 namespace App\Repositories\HardwareRepository\Implement;
 
 use App\Models\Device\UserDevice;
+use App\Repositories\HardwareRepository\HardwareBackupRepository;
 use App\Repositories\HardwareRepository\HardwareRepository;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 
-class PulseOximetryRepository implements HardwareRepository
+class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepository
 {
 
     protected $userDevice;
@@ -21,10 +22,29 @@ class PulseOximetryRepository implements HardwareRepository
         // cari device pasien
         $patientDevice = $this->userDevice::where('serial_number', $serial_number)->first();
 
-        // insert data
-        $patientDevice->pulseOximetries()->create($data);
+        if ($patientDevice !== null) {
+            // insert data
+            $patientDevice->pulseOximetries()->create($data);
+            return true;
+        }
 
-        return $patientDevice;
+        return false;
+    }
+
+    public function storeTxt(string $serial_number, $file): bool
+    {
+        $patientDevice = $this->userDevice::where('serial_number', $serial_number)->first();
+
+        if ($file !== null && $patientDevice !== null) {
+            $path = "backup/oximeter";
+
+            Storage::disk('backup-pulse-data')->put($path, $file['backup']);
+            $patientDevice->pulseOximetries()->create($file);
+
+            return true;
+        }
+
+        return false;
     }
 
     public function getMeasurements($serial_number)

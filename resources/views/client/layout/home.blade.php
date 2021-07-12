@@ -1,41 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('client.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ asset('client/css/home.css') }}">
-    <title>Amado</title>
-
-    <!-- add icon link -->
-    <link rel="icon" href="https://i.ibb.co/ssb5mKk/amado.png" type="image/x-icon">
-</head>
-
-<body>
-    <header>
-        <nav>
-            <ul class="nav-logo">
-                <img src="{{ asset('resources/img-web/amado-icon.png') }}" alt="amado-logo" class="nav-logo-img">
-                <a href="#" class="nav-logo-title">Amado <span>E-Health</span></a>
-            </ul>
-            <input id="burger" type="checkbox" />
-            <label for="burger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-            <div class="navigation">
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#">Teknologi</a></li>
-                    <li class="nav-item"><a href="#">Untuk Klinik & RS</a></li>
-                    <li class="nav-item"><a href="#" class="btn-second color-white">Login</a></li>
-                    <li class="nav-item"><a href="#" class="btn-first color-white">Beli Sekarang</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
+@section('content')
     <main>
         <article class="container home">
             <div class="row justify-content-md-center content">
@@ -144,62 +109,4 @@
             </div>
         </article>
     </main>
-
-
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12 col-md-3">
-                    <h6>Tentang Kami</h6>
-                    <p class="text-justify">Jalan Raya Jember No.KM13, Kawang, Labanasem,
-                        Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68461</p>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <h6>Kategori</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Teknologi</a></li>
-                        <li><a href="#">Untuk RS</a></li>
-                        <li><a href="#">Beli Sekarang</a></li>
-                        <li><a href="#">Download</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-6 col-md-3">
-                    <h6>Link</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Tentang Kami</a></li>
-                        <li><a href="#">Hubungi Kami</a></li>
-                        <li><a href="#">Kontribusi</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                    </ul>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <h6>Support</h6>
-                    <ul class="footer-links">
-                        <li><a href="#">Vectorjuice</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 col-sm-6 col-xs-12">
-                    <p class="copyright-text">Copyright &copy; 2021 Amado E-Health
-                    </p>
-                </div>
-
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <ul class="social-icons">
-                        <li><a class="instagram" href="#"><i class="fab fa-instagram"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="{{ asset('client/js/home.js') }}"></script>
-</body>
-
-</html>
+@endsection

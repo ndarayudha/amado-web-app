@@ -1,10 +1,8 @@
 <?php
 
-use App\Http\Controllers\Api\Notification\NotificationController;
+
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoanController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\MedicalRecordController;
 use App\Http\Controllers\UserController;
@@ -28,9 +26,8 @@ use Illuminate\Support\Facades\Route;
  * TODO : Nanti route disesuaikan dengan Laravel 8
  */
 
-Route::get('/', [ClientController::class, 'index']);
-
-
+Route::get('/', [ClientController::class, 'index'])->name('home');
+Route::view('/tech', 'client.layout.tech');
 
 Route::middleware('auth')->group(function () {
 	Route::get('/dashboard', [HomeController::class, 'index'])->name('home');
@@ -59,13 +56,10 @@ Route::middleware('auth')->group(function () {
 	});
 
 
-	Route::resource('book', BookController::class);
 	Route::resource('patient', PatientController::class);
 	Route::resource('record', MedicalRecordController::class);
 	Route::resource('lokasi', LokasiController::class);
-	Route::resource('member', MemberController::class, ['except' => ['show']]);
 	Route::resource('user', UserController::class, ['except' => ['show']])->middleware('can:isAdmin');
-	Route::resource('loan', LoanController::class, ['except' => ['show', 'edit', 'update']]);
 });
 
 Route::middleware('guest')->group(function () {
@@ -76,5 +70,5 @@ Route::middleware('guest')->group(function () {
 /**
  * * Route Notification
  */
-Route::get('/topic-send', [NotificationController::class, 'sendTopicNotification']);
-Route::get('/token-send', [NotificationController::class, 'sendApiTokenNotification']);
+// Route::get('/topic-send', [NotificationController::class, 'sendTopicNotification']);
+// Route::get('/token-send', [NotificationController::class, 'sendApiTokenNotification']);

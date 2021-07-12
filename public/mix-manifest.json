@@ -1,4 +1,6 @@
 {
     "/client/js/home.js": "/client/js/home.js",
-    "/client/css/home.css": "/client/css/home.css"
+    "/client/css/home.css": "/client/css/home.css",
+    "/error/css/error.css": "/error/css/error.css",
+    "/client/css/tech.css": "/client/css/tech.css"
 }
