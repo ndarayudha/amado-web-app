@@ -5,6 +5,7 @@ namespace App\Repositories\HardwareRepository\Implement;
 use App\Models\Device\UserDevice;
 use App\Repositories\HardwareRepository\HardwareBackupRepository;
 use App\Repositories\HardwareRepository\HardwareRepository;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepository
@@ -34,11 +35,17 @@ class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepos
     public function storeTxt(string $serial_number, $file): bool
     {
         $patientDevice = $this->userDevice::where('serial_number', $serial_number)->first();
-
+        
         if ($file !== null && $patientDevice !== null) {
-            $path = "backup/oximeter";
 
-            Storage::disk('backup-pulse-data')->put($path, $file['backup']);
+
+            $fileName = time() . '.' . 'txt';
+            
+            $path = "backup/oximeter/$fileName";
+            
+            $file['backup-data'] = $path;
+
+            Storage::disk('backup-pulse-data')->put($fileName, $file['backup']->get());
             $patientDevice->pulseOximetries()->create($file);
 
             return true;

@@ -1,4 +1,5 @@
 @import "../util/reset.css";
+@import url("../../library/bootstrap5/css/bootstrap.min.css");
 @import "../util/global.css";
 @import "../util/animation.css";
 @import "../../library/font-awesome/css/all.css";
@@ -184,8 +185,8 @@ ul {
 }
 .site-footer h6 {
     color: #fff;
-    font-size: 16px;
-    text-transform: uppercase;
+    font-size: 1.5rem;
+    text-transform: capitalize;
     margin-top: 5px;
     letter-spacing: 2px;
 }
@@ -195,6 +196,9 @@ ul {
 .site-footer a:hover {
     color: #3366cc;
     text-decoration: none;
+}
+.site-footer [class^="col-"] {
+    margin-bottom: 30px;
 }
 .footer-links {
     padding-left: 0;
@@ -388,7 +392,7 @@ input:checked + label span:last-child {
         width: 100%;
         height: 0;
         box-shadow: var(--shadow-bottom);
-        transition: 0.5s;
+        transition: 0.3s;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -406,7 +410,7 @@ input:checked + label span:last-child {
         opacity: 0;
         margin: 25px 0;
         font-size: 1rem;
-        transition: 0.5s;
+        transition: 0.3s;
         transition-delay: 0s;
     }
     input:checked ~ .navigation {
@@ -414,7 +418,7 @@ input:checked + label span:last-child {
     }
     input:checked ~ .navigation > .nav-list > li {
         opacity: 1;
-        transition-delay: 0.3s;
+        transition-delay: 0s;
     }
     .nav-list {
         display: flex;
@@ -488,6 +492,12 @@ input:checked + label span:last-child {
     }
 }
 @media (max-width: 576px) {
+    .site-footer [class^="col-"] {
+        margin-bottom: 10px;
+    }
+    .about {
+        margin-top: 0;
+    }
     nav {
         padding: 10px 20px;
     }
@@ -501,15 +511,15 @@ input:checked + label span:last-child {
     }
     .home p {
         font-weight: 300;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         word-spacing: 3px;
         line-height: 1.3rem;
 
         padding: 0 30px;
     }
     .home img {
-        margin-top: 30px;
-        width: 200px;
+        margin-top: 40px;
+        width: 260px;
     }
     .title h2 {
         font-size: 1.2rem;
@@ -521,7 +531,7 @@ input:checked + label span:last-child {
         font-size: 1rem;
     }
     .about .description p {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
     .about .description p {
         line-height: 1.6rem;

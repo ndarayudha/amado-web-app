@@ -16,7 +16,6 @@
                 <li class="nav-item"><a href="/tech">Teknologi</a></li>
                 <li class="nav-item"><a href="#">Untuk Klinik & RS</a></li>
                 <li class="nav-item"><a href="#" class="btn-second color-white">Login</a></li>
-                <li class="nav-item"><a href="#" class="btn-first color-white">Beli Sekarang</a></li>
             </ul>
         </div>
     </nav>

@@ -117,11 +117,4 @@ class PatientHardwareService implements DeviceService, DeviceOperationService
         $serial_number = $this->hardwareRepository->getSerialNumber($patientHasBeenAuthenticated->id);
         return $serial_number;
     }
-
-
-    // public function calculateAverrageData($serial_number, HardwareService $hardwareService)
-    // {
-    //     $sensorData = $hardwareService->getSensorData($serial_number);
-    //     return $sensorData;
-    // }
 }

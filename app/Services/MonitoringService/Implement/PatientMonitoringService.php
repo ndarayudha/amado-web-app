@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PatientMonitoringService implements MonitoringService
 {
-
     protected PatientMonitoringRepository $monitoringRepo;
     protected PatientMedicalRecordService $medicalRecordService;
     protected PatientHardwareRepository $hardwareRepo;
@@ -85,12 +84,16 @@ class PatientMonitoringService implements MonitoringService
 
     public function calculateAverrageData($serial_number, PulseOximetryService $hardwareService)
     {
-        $allSensorData = $hardwareService->getSensorData($serial_number)->pluck('spo2')->all();
-        $totalLengthData = count($allSensorData);
-        $sumTotalData = array_sum($allSensorData);
-        $result = $sumTotalData / $totalLengthData;
+        $spo2Data = $hardwareService->getSensorData($serial_number)->pluck('spo2')->all();
+        $bpmData = $hardwareService->getSensorData($serial_number)->pluck('bpm')->all();
+        $totalLengthSpo2Data = count($spo2Data);
+        $totalLengthBpmData = count($bpmData);
+        $sumTotalSpo2Data = array_sum($spo2Data);
+        $sumTotalBpmData = array_sum($bpmData);
+        $resultSpo2 = $sumTotalSpo2Data / $totalLengthSpo2Data;
+        $resultBpm = $sumTotalBpmData / $totalLengthBpmData;
 
-        return $result;
+        return array($resultSpo2,$resultBpm);
     }
 
 

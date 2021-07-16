@@ -24,11 +24,11 @@ class MedicalRecordController extends Controller
         return response()->json([
             'code' => 200,
             'status' => 'success',
-            'patient' => $result['user'],
-            'monitoring_location' => $result['monitoring_location'],
-            'close_contacts' => $result['close_contact'],
-            'device_type' => $result['device_type'],
-            'monitoring_result' => $result['monitoring_result']
+            'patient' => $result[0],
+            'monitoring_location' => $result[1],
+            'close_contacts' => $result[2],
+            'device_type' => $result[3],
+            'monitoring_result' => $result[4]
         ]);
     }
 

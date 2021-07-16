@@ -101,6 +101,8 @@ Hardware yang terintegrasi ini bertugas untuk mendapatkan data saturasi oksigen 
 -   [Monitoring](#m_monitoring)
     -   [Get Monitoring Result](#monitoring_result)
 -   [Rekam Medis](#rekam_medis)
+    -   [Rekam Medis Pasien](#patient_record)
+        -   [Get](#patient_record_get)
 
 
 # API Hardware
@@ -1007,6 +1009,101 @@ Response:
 }
 ```
 <!-- ============= GEOLOCATION END ================ -->
+
+<!-- -   [Rekam Medis](#rekam_medis)
+    -   [Rekam Medis Pasien](#patient_record)
+        -   [Get](#patient_record_get) -->
+    
+
+<!-- ============= MEDICAL RECORD START ================ -->
+# <a name="rekam_medis"></a>Medical Record
+## <a name="patient_record"></a>Rekam Medis Pasien
+### <a name="petient_record_get"></a>Get
+-   Method: GET
+-   Endpoint: 'patient/record'
+-   Header :
+    -   Content-Type : application/json
+- Body: 
+
+```json
+{
+    "patient_id": 1
+}
+```
+
+Response
+-   Success
+```json
+{
+    "code": 200,
+    "status": "success",
+    "patient": {
+        "id": 1,
+        "name": "Niki",
+        "phone": "123456789",
+        "photo": "profiles/1626400419.png",
+        "email": "yofan.ixe@gmail.com",
+        "jenis_kelamin": "Laki - Laki",
+        "tanggal_lahir": "24-08-1999",
+        "alamat": "Banyuwangi"
+    },
+    "monitoring_location": {
+        "latitude": "-8.458808283281881",
+        "longitude": "114.25944812277316"
+    },
+    "close_contacts": [
+        {
+            "id": 1,
+            "patient_id": 1,
+            "address": "Jalan Raya Jember No.KM13, Kawang, Labanasem, Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68461",
+            "name": "nini",
+            "relationship": "saudara",
+            "duration": "2 menit",
+            "time": "10:02",
+            "date": "2021-09-21",
+            "latitude": "-8.318773711922141",
+            "longitude": "114.28271462612766",
+            "created_at": "2021-07-16T03:02:19.000000Z",
+            "updated_at": "2021-07-16T03:02:19.000000Z"
+        },
+        {
+            "id": 2,
+            "patient_id": 1,
+            "address": "Jalan Raya Jember No.KM13, Kawang, Labanasem, Kec. Kabat, Kabupaten Banyuwangi, Jawa Timur 68461",
+            "name": "nunu",
+            "relationship": "saudara",
+            "duration": "2 menit",
+            "time": "10:02",
+            "date": "2021-09-22",
+            "latitude": "-8.318773711922141",
+            "longitude": "114.28271462612766",
+            "created_at": "2021-07-16T03:03:02.000000Z",
+            "updated_at": "2021-07-16T03:03:02.000000Z"
+        }
+    ],
+    "device_type": "Pulse Oximetry",
+    "monitoring_result": {
+        "averrage_spo2": "99",
+        "averrage_bpm": "129",
+        "status": "normal",
+        "recomendation": "tetap jaga kesehatan anda dengan patuhi protokol kesehatan",
+        "created_at": "07/16/2021"
+    }
+}
+```
+
+-   Failed
+```json
+{
+    "code" : 400,
+    "status": "failed",
+    "message": "anda belum melakukan monitoring sebanyak 3 kali"
+}
+```
+
+
+<!-- ============= MEDICAL RECORD END ================ -->
+
 
 
 <!-- ============= DEVICE START ============= -->

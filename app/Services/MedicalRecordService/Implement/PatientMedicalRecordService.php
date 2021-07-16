@@ -18,20 +18,15 @@ class PatientMedicalRecordService implements IMedicalRecordService
     }
 
 
-    public function createMedicalRecord($patient_id, $resultSensor)
+    public function createMedicalRecord($patient_id, array $resultSensor)
     {
-        $status = $this->checkDiagnose($resultSensor);
+        $spo2Result = $resultSensor[0];
+        $bpmResult = $resultSensor[1];
+        $status = $this->checkDiagnose($spo2Result);
         $recomendation = $this->giveRecomendation($status);
 
-        $this->medicalRecordRepo->save($patient_id, $resultSensor, $status, $recomendation);
+        $this->medicalRecordRepo->save($patient_id, $spo2Result, $bpmResult, $status, $recomendation);
     }
-
-
-    // public function getMedicalRecord($patient_id)
-    // {
-    //     $patientRecord = $this->medicalRecordRepo->getAll($patient_id);
-    //     return $patientRecord;
-    // }
 
 
     public function getMedicalRecord($patient_id)

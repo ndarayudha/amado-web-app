@@ -34,7 +34,7 @@
     text-align: center;
     opacity: 0.9;
 }
-.container, .container-sm {
+.container-sm {
     max-width: 100%;
 }
 .row{

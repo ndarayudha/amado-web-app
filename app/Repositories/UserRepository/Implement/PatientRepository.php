@@ -44,8 +44,7 @@ class PatientRepository implements UserRepository
         $idPatient = $userAuth->id;
 
         $imageName = time() . '.' . 'png';
-
-        // $path = Storage::putFile('public/profiles', $imageName);
+        
         $path = "profiles/$imageName";
 
         Storage::disk('public-image')->put($imageName, $photo);

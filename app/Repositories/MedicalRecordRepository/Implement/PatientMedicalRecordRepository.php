@@ -7,6 +7,7 @@ use App\Models\Device\UserDevice;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\Models\Patient\Patient;
 use App\Repositories\MedicalRecordRepository\IMedicalRecordRepository;
+use Carbon\Carbon;
 
 class PatientMedicalRecordRepository implements IMedicalRecordRepository
 {
@@ -75,17 +76,23 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
 
     public function getMonitoringResult($patient_id): array
     {
-        $patientMedicalRecord = $this->medicalRecord::where('patient_id', $patient_id)->get()->first()->only(['averrage_spo2', 'status', 'recomendation']);
+        $patientMedicalRecord = $this->medicalRecord::where('patient_id', $patient_id)->get()->last()->only(['averrage_spo2', 'averrage_bpm', 'status', 'recomendation', 'created_at']);
+
+        $medicalRecordDate = $patientMedicalRecord['created_at']->format('Y-m-d H:i:s', 'Asia/Jakarta');
+        
+        $patientMedicalRecord['created_at'] = $medicalRecordDate;
+        
         return $patientMedicalRecord;
     }
 
 
 
-    public function save($patient_id, $avgSpo2, $status, $recomendation)
+    public function save($patient_id, $avgSpo2, $avgBpm, $status, $recomendation)
     {
         $patient = $this->patient::find($patient_id);
         $patient->medicalRecord()->create([
             'averrage_spo2' => $avgSpo2,
+            'averrage_bpm' => $avgBpm,
             'status' => $status,
             'recomendation' => $recomendation
         ]);
