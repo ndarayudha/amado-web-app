@@ -1082,13 +1082,28 @@ Response
         }
     ],
     "device_type": "Pulse Oximetry",
-    "monitoring_result": {
-        "averrage_spo2": "99",
-        "averrage_bpm": "129",
-        "status": "normal",
-        "recomendation": "tetap jaga kesehatan anda dengan patuhi protokol kesehatan",
-        "created_at": "07/16/2021"
-    }
+    "monitoring_result": [
+        {
+            "id": 1,
+            "patient_id": 1,
+            "averrage_spo2": "99",
+            "averrage_bpm": "120",
+            "status": "normal",
+            "recomendation": "tetap jaga kesehatan anda dengan patuhi protokol kesehatan",
+            "created_at": "18, Jul 2021 15:20",
+            "updated_at": "18, Jul 2021 15:20"
+        },
+        {
+            "id": 2,
+            "patient_id": 1,
+            "averrage_spo2": "99",
+            "averrage_bpm": "120",
+            "status": "normal",
+            "recomendation": "tetap jaga kesehatan anda dengan patuhi protokol kesehatan",
+            "created_at": "18, Jul 2021 15:21",
+            "updated_at": "18, Jul 2021 15:21"
+        }
+    ]
 }
 ```
 
@@ -1126,6 +1141,18 @@ Response
     "latitude": 2174217214,
     "longitude": 21429114204,
     "backup": "file-backup.txt"
+}
+```
+Response
+- Success:
+```json
+{
+     "message" : "data berhasil di simpan"
+}
+```
+```json
+{
+    "message": "aktifkan button monitoring di aplikasi android"
 }
 ```
 <!-- ============= INSERT SENSOR END ============= -->

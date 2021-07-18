@@ -59,7 +59,6 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
         $patientDeviceId = $patient->userDevice()->get()->pluck('device_id')->toArray()[0];
         $patientDeviceType = $this->device::find($patientDeviceId)->name;
         $patientMedicalRecord = $this->getMonitoringResult($patient_id);
-        $patientSpo2Data = $this->userDevice::find($patientDeviceId)->pulseOximetries()->pluck('spo2')->toArray();
 
         $patientRecord = array(
             $patientData,
@@ -67,8 +66,9 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
             $patientCloseContact,
             $patientDeviceType,
             $patientMedicalRecord,
-            $patientSpo2Data
         );
+
+        // dd($patientRecord);
 
         return $patientRecord;
     }
@@ -76,12 +76,8 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
 
     public function getMonitoringResult($patient_id): array
     {
-        $patientMedicalRecord = $this->medicalRecord::where('patient_id', $patient_id)->get()->last()->only(['averrage_spo2', 'averrage_bpm', 'status', 'recomendation', 'created_at']);
+        $patientMedicalRecord = $this->medicalRecord::where('patient_id', $patient_id)->get()->all();
 
-        $medicalRecordDate = $patientMedicalRecord['created_at']->format('Y-m-d H:i:s', 'Asia/Jakarta');
-        
-        $patientMedicalRecord['created_at'] = $medicalRecordDate;
-        
         return $patientMedicalRecord;
     }
 

@@ -1,1 +1,375 @@
-.tech-home{background-image:url(/images/img-doctor.png?be4a93190b72957a5eee2271f575b420);height:100vh}.tech-home,.tech-spec{align-items:center;background-position:50%;background-repeat:no-repeat;display:flex;justify-content:center;-o-object-fit:cover;object-fit:cover}.tech-spec{background-image:url(/images/img-spec.png?c793eb499c14a35789807fe6231e0da8);background-size:90%;height:500px}.tech-component{background-color:var(--white-main)}.tech-home h2,.tech-home h4{color:var(--white-main)}.tech-home h2{opacity:.9}.utilities{color:var(--font-black-main);opacity:.9;text-align:center}.container-sm{max-width:100%}.row{margin:0;padding:0}.tech-home{background-size:cover}.tech-home h4{padding:0 20px}.card{height:250px;width:340px}.card p{font-size:1rem;font-weight:500;line-height:1.3rem;opacity:.8}.card .tech-home{align-items:center;display:flex;justify-content:center;text-align:center}.tech-home .content{padding:0 20px;text-align:center}.tech-home h2{filter:brightness(100%);font-size:1.4rem}.tech-home h4{font-size:1rem;font-weight:500;letter-spacing:1px;margin-top:10px;opacity:.7}.tech-title{color:var(--font-black-main);font-size:1.4rem;font-weight:500;margin-bottom:20px;padding:0 20px;text-align:center}article.tech-component{padding:50px 0}.component{display:flex;justify-content:center}.list-component .card h5{color:var(--font-black-main);font-size:1.2rem;font-weight:600;margin-bottom:20px}.list-component .card img{margin-bottom:10px;width:100px}.utilities{margin-top:40px}.tech-spesification .tech-title{color:var(--font-black-main)}.img-spec{text-align:center}.img-spec,.img-spec img{width:100%}@media (max-width:992px){.container,.container-sm{max-width:100%}.row{margin:0;padding:0}.tech-home{background-size:cover}.tech-home h4{padding:0 20px}.card{margin:6px 15px;width:340px}.card p{font-size:1rem;font-weight:500;line-height:1.3rem;opacity:.8}.card .tech-home{align-items:center;display:flex;justify-content:center;text-align:center}.tech-home .content{padding:0 20px;text-align:center}.tech-home h2{filter:brightness(100%);font-size:1.4rem}.tech-home h4{font-size:1rem;font-weight:500;letter-spacing:1px;margin-top:10px;opacity:.7}.tech-title{color:var(--font-black-main);font-size:1.4rem;font-weight:500;margin-bottom:20px;padding:0 20px;text-align:center}article.tech-component{padding:50px 0}.component{display:flex;justify-content:center}.list-component .card h5{color:var(--font-black-main);font-size:1.2rem;font-weight:600;margin-bottom:20px}.list-component .card img{margin-bottom:10px;width:100px}.utilities{margin-top:40px}.tech-spesification .tech-title{color:var(--font-black-main)}.img-spec{text-align:center}.img-spec,.img-spec img{width:100%}}@media (max-width:768px){.container,.container-sm{max-width:100%}.row{margin:0;padding:0}.tech-home{background-size:cover}.tech-home h4{padding:0 20px}.card{margin:6px 15px;width:340px}.card p{font-size:1rem;font-weight:500;line-height:1.3rem;opacity:.8}.card .tech-home{align-items:center;display:flex;justify-content:center;text-align:center}.tech-home .content{padding:0 20px;text-align:center}.tech-home h2{filter:brightness(100%);font-size:1.4rem}.tech-home h4{font-size:1rem;font-weight:500;letter-spacing:1px;margin-top:10px;opacity:.7}.tech-title{color:var(--font-black-main);font-size:1.4rem;font-weight:500;margin-bottom:20px;padding:0 20px;text-align:center}article.tech-component{padding:50px 0}.component{display:flex;justify-content:center}.list-component .card h5{color:var(--font-black-main);font-size:1.2rem;font-weight:600;margin-bottom:20px}.list-component .card img{margin-bottom:10px;width:100px}.utilities{margin-top:40px}.tech-spesification .tech-title{color:var(--font-black-main)}.img-spec{text-align:center}.img-spec,.img-spec img{width:100%}.tech-spec{height:270px;margin-top:50px}}@media (max-width:576px){.tech-spec{height:200px}.card{margin:6px 15px;width:340px}.card p{font-size:1rem;font-weight:500;line-height:1.3rem;opacity:.8}.card .tech-home{align-items:center;display:flex;justify-content:center;text-align:center}.tech-home .content{padding:0 20px;text-align:center}.tech-home h2{filter:brightness(100%);font-size:1.4rem}.tech-home h4{font-size:1rem;font-weight:500;letter-spacing:1px;margin-top:10px;opacity:.7}.tech-title{color:var(--font-black-main);font-size:1.4rem;font-weight:500;margin-bottom:20px;padding:0 20px;text-align:center}article.tech-component{padding:50px 0}.component{display:flex;justify-content:center}.list-component .card h5{color:var(--font-black-main);font-size:1.2rem;font-weight:600;margin-bottom:20px}.list-component .card img{margin-bottom:10px;width:100px}.utilities{margin-top:40px}.tech-spesification .tech-title{color:var(--font-black-main)}.img-spec{text-align:center;width:100%}.img-spec img{width:300px}}
+.tech-home {
+    background-image: url(/images/img-doctor.png?be4a93190b72957a5eee2271f575b420);
+    background-repeat: no-repeat;
+    background-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tech-spec{
+    background-image: url(/images/img-spec.png?c793eb499c14a35789807fe6231e0da8);
+    background-repeat: no-repeat;
+    background-position: center;
+    -o-object-fit: cover;
+       object-fit: cover;
+    display: flex;
+    height: 500px;
+    background-size: 90%;
+    align-items: center;
+    justify-content: center;
+}
+.tech-component {
+    background-color: var(--white-main);
+}
+.tech-home h2,
+.tech-home h4 {
+    color: var(--white-main);
+}
+.tech-home h2 {
+    opacity: 0.9;
+}
+.utilities {
+    color: var(--font-black-main);
+    text-align: center;
+    opacity: 0.9;
+}
+.container-sm {
+    max-width: 100%;
+}
+.row{
+    padding: 0;
+    margin: 0;
+}
+.tech-home{
+    background-size: cover;
+}
+.tech-home h4 {
+    padding: 0 20px;
+}
+.card {
+    width: 340px;
+    height: 250px;
+}
+.card p {
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.3rem;
+    opacity: 0.8;
+}
+.card .tech-home {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.tech-home .content {
+    padding: 0 20px;
+    text-align: center;
+}
+.tech-home h2 {
+    font-size: 1.4rem;
+    filter: brightness(100%);
+}
+.tech-home h4 {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+.tech-title {
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 0 20px;
+    font-weight: 500;
+    color: var(--font-black-main);
+    font-size: 1.4rem;
+}
+article.tech-component {
+    padding: 50px 0;
+}
+.component {
+    display: flex;
+    justify-content: center;
+}
+.list-component .card h5 {
+    font-weight: 600;
+    color: var(--font-black-main);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+.list-component .card img {
+    width: 100px;
+    margin-bottom: 10px;
+}
+.utilities {
+    margin-top: 40px;
+}
+.tech-spesification .tech-title {
+    color: var(--font-black-main);
+}
+.img-spec {
+    width: 100%;
+    text-align: center;
+}
+.img-spec img {
+    width: 100%;
+}
+@media (max-width: 992px){
+    .container, .container-sm {
+        max-width: 100%;
+    }
+    .row{
+        padding: 0;
+        margin: 0;
+    }
+    .tech-home{
+        background-size: cover;
+    }
+    .tech-home h4 {
+        padding: 0 20px;
+    }
+    .card {
+        margin: 0;
+        margin-bottom: 10px;
+        margin: 6px 15px;
+        width: 340px;
+    }
+    .card p {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.3rem;
+        opacity: 0.8;
+    }
+    .card .tech-home {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    .tech-home .content {
+        padding: 0 20px;
+        text-align: center;
+    }
+    .tech-home h2 {
+        font-size: 1.4rem;
+        filter: brightness(100%);
+    }
+    .tech-home h4 {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 500;
+        opacity: 0.7;
+        margin-top: 10px;
+    }
+    .tech-title {
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 0 20px;
+        font-weight: 500;
+        color: var(--font-black-main);
+        font-size: 1.4rem;
+    }
+    article.tech-component {
+        padding: 50px 0;
+    }
+    .component {
+        display: flex;
+        justify-content: center;
+    }
+    .list-component .card h5 {
+        font-weight: 600;
+        color: var(--font-black-main);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    .list-component .card img {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    .utilities {
+        margin-top: 40px;
+    }
+    .tech-spesification .tech-title {
+        color: var(--font-black-main);
+    }
+    .img-spec {
+        width: 100%;
+        text-align: center;
+    }
+    .img-spec img {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px){
+    .container, .container-sm {
+        max-width: 100%;
+    }
+    .row{
+        padding: 0;
+        margin: 0;
+    }
+    .tech-home{
+        background-size: cover;
+    }
+    .tech-home h4 {
+        padding: 0 20px;
+    }
+    .card {
+        margin: 0;
+        margin-bottom: 10px;
+        margin: 6px 15px;
+        width: 340px;
+    }
+    .card p {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.3rem;
+        opacity: 0.8;
+    }
+    .card .tech-home {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    .tech-home .content {
+        padding: 0 20px;
+        text-align: center;
+    }
+    .tech-home h2 {
+        font-size: 1.4rem;
+        filter: brightness(100%);
+    }
+    .tech-home h4 {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 500;
+        opacity: 0.7;
+        margin-top: 10px;
+    }
+    .tech-title {
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 0 20px;
+        font-weight: 500;
+        color: var(--font-black-main);
+        font-size: 1.4rem;
+    }
+    article.tech-component {
+        padding: 50px 0;
+    }
+    .component {
+        display: flex;
+        justify-content: center;
+    }
+    .list-component .card h5 {
+        font-weight: 600;
+        color: var(--font-black-main);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    .list-component .card img {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    .utilities {
+        margin-top: 40px;
+    }
+    .tech-spesification .tech-title {
+        color: var(--font-black-main);
+    }
+    .img-spec {
+        width: 100%;
+        text-align: center;
+    }
+    .img-spec img {
+        width: 100%;
+    }
+    .tech-spec{
+        height: 270px;
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 576px) {
+    .tech-spec{
+        height: 200px;
+    }
+    .card {
+        margin: 0;
+        margin-bottom: 10px;
+        margin: 6px 15px;
+        width: 340px;
+    }
+    .card p {
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.3rem;
+        opacity: 0.8;
+    }
+    .card .tech-home {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+    .tech-home .content {
+        padding: 0 20px;
+        text-align: center;
+    }
+    .tech-home h2 {
+        font-size: 1.4rem;
+        filter: brightness(100%);
+    }
+    .tech-home h4 {
+        font-size: 1rem;
+        letter-spacing: 1px;
+        font-weight: 500;
+        opacity: 0.7;
+        margin-top: 10px;
+    }
+    .tech-title {
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 0 20px;
+        font-weight: 500;
+        color: var(--font-black-main);
+        font-size: 1.4rem;
+    }
+    article.tech-component {
+        padding: 50px 0;
+    }
+    .component {
+        display: flex;
+        justify-content: center;
+    }
+    .list-component .card h5 {
+        font-weight: 600;
+        color: var(--font-black-main);
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    .list-component .card img {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    .utilities {
+        margin-top: 40px;
+    }
+    .tech-spesification .tech-title {
+        color: var(--font-black-main);
+    }
+    .img-spec {
+        width: 100%;
+        text-align: center;
+    }
+    .img-spec img {
+        width: 300px;
+    }
+}
+
