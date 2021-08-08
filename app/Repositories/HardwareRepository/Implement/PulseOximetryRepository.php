@@ -34,15 +34,16 @@ class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepos
 
     public function storeTxt(string $serial_number, $file): bool
     {
+
         $patientDevice = $this->userDevice::where('serial_number', $serial_number)->first();
-        
+
         if ($file !== null && $patientDevice !== null) {
 
 
             $fileName = time() . '.' . 'txt';
-            
+
             $path = "backup/oximeter/$fileName";
-            
+
             $file['backup-data'] = $path;
 
             Storage::disk('backup-pulse-data')->put($fileName, $file['backup']->get());

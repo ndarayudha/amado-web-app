@@ -110,7 +110,7 @@ class PatientService implements UserService
     public function getBiodata($request)
     {
         $patientId = $request->id;
-        $patientBiodata = $this->patientRepository->getPatient($patientId);
+        $patientBiodata = $this->patientRepository->getUser($patientId);
         return $patientBiodata;
     }
 }

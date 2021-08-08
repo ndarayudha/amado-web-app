@@ -21,7 +21,11 @@ class Doctor extends Model implements CanResetPassword
         'email',
         'password',
         'phone',
-        'role',
+        'address',
+        'photo',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'specialist'
     ];
 
     public function findForPassport($username)

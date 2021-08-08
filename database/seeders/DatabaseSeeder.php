@@ -14,8 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            AdminSeeder::class,
-            SettingSeeder::class,
             DeviceSeeder::class,
             NotificationTopicSeeder::class,
             GeneralNotificationTopic::class,

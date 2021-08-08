@@ -9,5 +9,5 @@ interface UserRepository
     public function saveUpdateUser($userAuth, $userUpdateData): Object;
     public function savePhotoProfile($userAuth, $photo);
     public function getPhotoProfile($user_id);
-    function getPatient($patient_id): Patient;
+    function getUser($user_id): Object;
 }

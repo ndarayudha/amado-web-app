@@ -44,7 +44,7 @@ class PatientRepository implements UserRepository
         $idPatient = $userAuth->id;
 
         $imageName = time() . '.' . 'png';
-        
+
         $path = "profiles/$imageName";
 
         Storage::disk('public-image')->put($imageName, $photo);
@@ -87,9 +87,9 @@ class PatientRepository implements UserRepository
         return null;
     }
 
-    public function getPatient($patient_id): Patient
+    public function getUser($user_id): Patient
     {
-        $patient = Patient::find($patient_id);
+        $patient = Patient::find($user_id);
         return $patient;
     }
 }
