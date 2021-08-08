@@ -2,7 +2,7 @@
 
 namespace App\Services\ForgotPasswordService\Implement;
 
-use App\Repositories\ForgotPasswordRepository\Implement\PatientForgotPasswordRepository;
+use App\Repositories\ForgotPasswordRepository\Implement\DoctorForgotPasswordRepository;
 use App\Services\ForgotPasswordService\ForgotPasswordService;
 use Illuminate\Http\Request;
 use Illuminate\Mail\Message;
@@ -16,25 +16,26 @@ const TOKEN_DOES_NOT_EXIST = true;
 const VALIDATOR_FAILS = true;
 
 
-class PatientForgotPasswordService implements ForgotPasswordService
+class DoctorForgotPasswordService implements ForgotPasswordService
 {
 
-    protected PatientForgotPasswordRepository $forgotPasswordRepository;
+    protected DoctorForgotPasswordRepository $doctorForgotPasswordRepository;
 
 
-    public function __construct(PatientForgotPasswordRepository $repo)
+    public function __construct(DoctorForgotPasswordRepository $doctorForgotPasswordRepository)
     {
-        $this->forgotPasswordRepository = $repo;
+        $this->doctorForgotPasswordRepository = $doctorForgotPasswordRepository;
     }
 
 
     public function forgotPassword($email)
     {
+
         $token = Str::random(50);
 
-        $isPatientEmailDosentExist = $this->forgotPasswordRepository->forgot($email, $token);
+        $isDoctorEmailDosentExist = $this->doctorForgotPasswordRepository->forgot($email, $token);
 
-        if ($isPatientEmailDosentExist) {
+        if ($isDoctorEmailDosentExist) {
             return;
         }
 
@@ -49,21 +50,20 @@ class PatientForgotPasswordService implements ForgotPasswordService
             'token' => 'required'
         ]);
 
-
         if ($validator->fails()) {
             return VALIDATOR_FAILS;
         } else {
             $token = $request->input('token');
-            $isTokenExist = $this->forgotPasswordRepository->getToken($token);
+            $isTokenExist = $this->doctorForgotPasswordRepository->getToken($token);
 
             if (!$isTokenExist) {
                 return TOKEN_DOES_NOT_EXIST;
             }
 
-            $email = $this->forgotPasswordRepository->getEmailByToken($token);
+            $email = $this->doctorForgotPasswordRepository->getEmailByToken($token);
             $newPassword = Hash::make($request->password);
 
-            $this->forgotPasswordRepository->updatePassword($newPassword, $email);
+            $this->doctorForgotPasswordRepository->updatePassword($newPassword, $email);
         }
     }
 

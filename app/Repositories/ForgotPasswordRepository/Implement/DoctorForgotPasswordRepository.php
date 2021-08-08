@@ -2,23 +2,23 @@
 
 namespace App\Repositories\ForgotPasswordRepository\Implement;
 
-use App\Models\Patient\Patient;
+use App\Models\Doctor;
 use App\Repositories\ForgotPasswordRepository\ForgotPasswordRepository;
 use Illuminate\Support\Facades\DB;
 
-class PatientForgotPasswordRepository implements ForgotPasswordRepository
+class DoctorForgotPasswordRepository implements ForgotPasswordRepository
 {
-    protected $patient;
+    protected Doctor $doctor;
 
-    public function __construct(Patient $model)
+    public function __construct(Doctor $model)
     {
-        $this->patient = $model;
+        $this->doctor = $model;
     }
 
 
     public function forgot($email, $token)
     {
-        $isEmailDosentExist = $this->patient::where('email', $email)->doesntExist();
+        $isEmailDosentExist = $this->doctor::where('email', $email)->doesntExist();
 
         if ($isEmailDosentExist) {
             return true;
@@ -54,7 +54,7 @@ class PatientForgotPasswordRepository implements ForgotPasswordRepository
 
     public function updatePassword($newPassword, $email)
     {
-        $this->patient::where('email', $email)->update([
+        $this->doctor::where('email', $email)->update([
             'password' => $newPassword
         ]);
     }
