@@ -78,4 +78,10 @@ class Patient extends Model implements CanResetPassword
     {
         return $this->hasOne(MedicalRecord::class);
     }
+
+
+    public function findForPassport($username)
+    {
+        return $this->where('username', $username)->first();
+    }
 }

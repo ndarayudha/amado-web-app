@@ -1,33 +1,30 @@
 <?php
 
-namespace App\Http\Controllers\Api\Patient;
+namespace App\Http\Controllers\ApiWeb;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\LogoutRequest;
 use App\Http\Requests\Auth\RegisterRequest;
+use App\Services\AuthApi\Implement\DoctorAuthService;
 use Exception;
-use App\Services\AuthApi\Implement\PatientAuthService;
 
-
-class PatientAuthApiController extends Controller
+class DoctorAuthController extends Controller
 {
-    protected $patientAuthService;
+    protected DoctorAuthService $doctorAuthService;
 
     public function __construct(
-        PatientAuthService $patientAuth
+        DoctorAuthService $doctorAuthService
     ) {
-        $this->patientAuthService = $patientAuth;
+        $this->doctorAuthService = $doctorAuthService;
     }
 
-
-    // Handle register patient
     public function register(RegisterRequest $request)
     {
 
         try {
-            $patient = $this->patientAuthService->register($request);
-            $token = $this->patientAuthService->createAccessToken($patient);
+            $doctor = $this->doctorAuthService->register($request);
+            $token = $this->doctorAuthService->createAccessToken($doctor);
 
             return response()->json([
                 'code' => 201,
@@ -36,11 +33,11 @@ class PatientAuthApiController extends Controller
                 'access_token' => $token->accessToken,
                 'token_id' => $token->token->id,
                 'user' => [
-                    'id' => $patient->id,
-                    'name' => $patient->name,
-                    'email' => $patient->email,
-                    'created_at' => $patient->created_at,
-                    'updated_at' => $patient->updated_at,
+                    'id' => $doctor->id,
+                    'name' => $doctor->name,
+                    'email' => $doctor->email,
+                    'created_at' => $doctor->created_at,
+                    'updated_at' => $doctor->updated_at,
                 ]
             ], 201);
         } catch (Exception $e) {
@@ -53,15 +50,15 @@ class PatientAuthApiController extends Controller
     }
 
 
-    // Handle Login Patient
+
     public function login(LoginRequest $request)
     {
 
-        $patient = $this->patientAuthService->login($request);
+        $doctor = $this->doctorAuthService->login($request);
 
-        if ($patient != null) {
+        if ($doctor != null) {
 
-            $token = $this->patientAuthService->recreateAccessToken($patient);
+            $token = $this->doctorAuthService->recreateAccessToken($doctor);
 
             return response()->json([
                 'code' => 200,
@@ -70,11 +67,11 @@ class PatientAuthApiController extends Controller
                 'access_token' => $token->accessToken,
                 'token_id' => $token->token->id,
                 'user' => [
-                    'id' => $patient->id,
-                    'name' => $patient->name,
-                    'email' => $patient->email,
-                    'created_at' => $patient->created_at,
-                    'updated_at' => $patient->updated_at,
+                    'id' => $doctor->id,
+                    'name' => $doctor->name,
+                    'email' => $doctor->email,
+                    'created_at' => $doctor->created_at,
+                    'updated_at' => $doctor->updated_at,
                 ]
             ], 200);
         } else {
@@ -87,11 +84,11 @@ class PatientAuthApiController extends Controller
     }
 
 
-    // Handle Logout Patient
+
     public function logout(LogoutRequest $request)
     {
 
-        $isLogout = $this->patientAuthService->logout($request);
+        $isLogout = $this->doctorAuthService->logout($request);
 
         if ($isLogout) {
             return response()->json([

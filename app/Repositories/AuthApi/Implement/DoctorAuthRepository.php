@@ -2,26 +2,25 @@
 
 namespace App\Repositories\AuthApi\Implement;
 
-use App\Models\Patient\Patient;
+use App\Models\Doctor;
 use App\Repositories\AuthApi\AuthRepository;
 use Exception;
 use Laravel\Passport\TokenRepository;
 use Laravel\Passport\Token;
 
-class PatientAuthRepository implements AuthRepository
+class DoctorAuthRepository implements AuthRepository
 {
+    protected $doctorModel;
 
-    protected $patientModel;
-
-    public function __construct(Patient $model)
+    public function __construct(Doctor $model)
     {
-        $this->patientModel = $model;
+        $this->doctorModel = $model;
     }
 
 
     public function saveUser(array $request): Object
     {
-        return $this->patientModel::create($request);
+        return $this->doctorModel::create($request);
     }
 
 
@@ -30,9 +29,9 @@ class PatientAuthRepository implements AuthRepository
         try {
             $tokenRepository = app(TokenRepository::class);
 
-            $patientToken = $tokenRepository->find($token_id);
+            $doctorToken = $tokenRepository->find($token_id);
 
-            if ($patientToken != null) {
+            if ($doctorToken != null) {
                 Token::where('id', $token_id)->delete();
                 // $tokenRepository->revokeAccessToken($token_id);
                 return true;
@@ -43,6 +42,7 @@ class PatientAuthRepository implements AuthRepository
             return false;
         }
     }
+
 
     public function revokeToken($token_id): bool
     {
@@ -61,6 +61,7 @@ class PatientAuthRepository implements AuthRepository
             return false;
         }
     }
+
 
     public function saveAccessToken($patient)
     {

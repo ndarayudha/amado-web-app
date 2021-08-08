@@ -33,6 +33,8 @@ class PatientAuthService implements AuthService
         if ($request->validated()) {
             $loginData = collect($request);
 
+            config(['auth.guards.api.provider' => 'patient']);
+
             Auth::guard('patient')->attempt($loginData->all());
 
             $patient = Auth::guard('patient')->user();
@@ -80,7 +82,7 @@ class PatientAuthService implements AuthService
     {
         if ($request->validated()) {
 
-            $isDeleted = $this->patientAuthRepository->deleteAccessToken($request->token_id);
+            $isDeleted = $this->patientAuthRepository->revokeToken($request->token_id);
 
             return $isDeleted;
         } else {
@@ -90,7 +92,7 @@ class PatientAuthService implements AuthService
 
     public function createAccessToken($patient)
     {
-        $tokenResult = $patient->createToken('AccessToken');
+        $tokenResult = $patient->createToken('AccessToken', ['patient']);
         $token = $tokenResult->token;
 
         $this->patientAuthRepository->saveAccessToken($token);

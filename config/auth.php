@@ -36,14 +36,20 @@ return [
     */
 
     'guards' => [
-        'web' => [
+
+        // 'web' => [
+        //     'driver' => 'session',
+        //     'provider' => 'users',
+        // ],
+
+        'doctor' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'doctors',
         ],
 
-        'api' => [
+        'doctor-api' => [
             'driver' => 'passport',
-            'provider' => 'users',
+            'provider' => 'doctors',
         ],
 
         'patient' => [
@@ -75,9 +81,14 @@ return [
     */
 
     'providers' => [
-        'users' => [
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\Models\User::class,
+        // ],
+
+        'doctors' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\Doctor::class,
         ],
 
         'patients' => [
@@ -102,8 +113,15 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+
+        // 'users' => [
+        //     'provider' => 'doctors',
+        //     'table' => 'password_resets',
+        //     'expire' => 60,
+        // ],
+
+        'doctors' => [
+            'provider' => 'doctors',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
