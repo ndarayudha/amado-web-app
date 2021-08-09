@@ -11,8 +11,8 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/client/home.js", "public/client/js");
+// mix.js("resources/js/client/home.js", "public/client/js");
 
-mix.css("resources/css/client/home.css", "public/client/css")
-    .css("resources/css/client/tech.css", "public/client/css")
-    .css("resources/css/errors/error.css", "public/error/css");
+// mix.css("resources/css/client/home.css", "public/client/css")
+//     .css("resources/css/client/tech.css", "public/client/css")
+//     .css("resources/css/errors/error.css", "public/error/css");
