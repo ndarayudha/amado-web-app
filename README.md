@@ -1115,7 +1115,7 @@ Response
 ```
 
 <!-- Medical Record Delete Start -->
-### <a name="petient_record_delete"></a>Get
+### <a name="patient_record_delete"></a>Delete
 -   Method: POST
 -   Endpoint: 'patient/record/delete'
 -   Header :
