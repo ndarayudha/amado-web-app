@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\Patient\ApiForgotPasswordController;
 use App\Http\Controllers\Api\Patient\PatientProfileController;
 use App\Http\Controllers\Api\Patient\PatientDeviceController;
 use App\Http\Controllers\Api\Device\PulseOximetryController;
+use App\Http\Controllers\Api\Geolocation\GeolocationController;
 use App\Http\Controllers\Api\MedicalRecord\MedicalRecordController;
 use App\Http\Controllers\Api\Notification\NotificationPatientController;
 
@@ -55,6 +56,15 @@ Route::prefix('patient')->group(function () {
      */
     Route::prefix('monitoring')->group(function () {
         Route::get('/', [MedicalRecordController::class, 'getMonitoringResult']);
+    });
+
+
+    /**
+     * * Route Geolocation
+     */
+    // get all patient location
+    Route::prefix('geolocation')->group(function () {
+        Route::get('/all', [GeolocationController::class, 'getAllPatientLocation']);
     });
 
 

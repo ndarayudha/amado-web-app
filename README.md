@@ -98,6 +98,8 @@ Hardware yang terintegrasi ini bertugas untuk mendapatkan data saturasi oksigen 
 -   [Geolokasi](#geolokasi)
     -   [Update Patient Location](#patient_location)
         -   [Update](#p_location_update)
+    -   [Get All Patient Location](#all_patient_location)
+        -   [Get](#all_location_update)
 -   [Monitoring](#m_monitoring)
     -   [Get Monitoring Result](#monitoring_result)
 -   [Rekam Medis](#rekam_medis)
@@ -1009,6 +1011,50 @@ Response:
     "message": "update location failed"
 }
 ```
+
+
+<!-- Get All Patient Location Start-->
+## <a name="all_patient_location"></a>Get All Patient Location
+### <a name="all_location_update"></a>GET
+Request:
+-   Method: GET
+-   Endpoint: 'patient/geolocation/all'
+-   Header:
+    -   Content-Type: application/json
+    -   Authorization: Bearer
+-   Body: none
+
+Response:
+-   Success:
+```json
+{
+    "code": 200,
+    "status": "berhasil",
+    "data": [
+        {
+            "id": 1,
+            "name": "Niki",
+            "latitude": "-8.458808283281881",
+            "longitude": "114.25944812277316"
+        },
+        {
+            "id": 2,
+            "name": "Yoyo",
+            "latitude": "-8.507765383320798 ",
+            "longitude": "114.25307836641305"
+        }
+    ]
+}
+```
+-   Failed:
+```json
+{
+    "code": 400,
+    "status": "failed",
+    "message": "tidak ada pasien lain yang terdaftar"
+}
+```
+<!-- Get All Patient Location End-->
 <!-- ============= GEOLOCATION END ================ -->
 
     
