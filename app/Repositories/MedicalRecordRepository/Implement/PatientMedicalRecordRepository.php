@@ -7,7 +7,7 @@ use App\Models\Device\UserDevice;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\Models\Patient\Patient;
 use App\Repositories\MedicalRecordRepository\IMedicalRecordRepository;
-use Carbon\Carbon;
+
 
 class PatientMedicalRecordRepository implements IMedicalRecordRepository
 {
@@ -15,7 +15,7 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
     private Patient $patient;
     private Device $device;
     private MedicalRecord $medicalRecord;
-    private UserDevice $userDevice;
+
 
     public function __construct(Patient $model, MedicalRecord $medicalRecord, Device $device, UserDevice $userDevice)
     {
@@ -24,6 +24,7 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
         $this->device = $device;
         $this->userDevice = $userDevice;
     }
+
 
     public function getAll($patient_id): array
     {
@@ -82,7 +83,6 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
     }
 
 
-
     public function save($patient_id, $avgSpo2, $avgBpm, $status, $recomendation)
     {
         $patient = $this->patient::find($patient_id);
@@ -97,5 +97,11 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
 
     public function update($patient_id)
     {
+    }
+
+
+    public function delete($patient_id)
+    {
+        return MedicalRecord::where('id', $patient_id)->delete();
     }
 }

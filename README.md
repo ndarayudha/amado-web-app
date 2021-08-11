@@ -103,6 +103,7 @@ Hardware yang terintegrasi ini bertugas untuk mendapatkan data saturasi oksigen 
 -   [Rekam Medis](#rekam_medis)
     -   [Rekam Medis Pasien](#patient_record)
         -   [Get](#patient_record_get)
+        -   [Delete](#patient_record_delete)
 
 
 # API Hardware
@@ -1010,9 +1011,6 @@ Response:
 ```
 <!-- ============= GEOLOCATION END ================ -->
 
-<!-- -   [Rekam Medis](#rekam_medis)
-    -   [Rekam Medis Pasien](#patient_record)
-        -   [Get](#patient_record_get) -->
     
 
 <!-- ============= MEDICAL RECORD START ================ -->
@@ -1116,6 +1114,31 @@ Response
 }
 ```
 
+<!-- Medical Record Delete Start -->
+### <a name="petient_record_delete"></a>Get
+-   Method: POST
+-   Endpoint: 'patient/record/delete'
+-   Header :
+    -   Content-Type : application/json
+
+Response
+-   Success:
+```json
+{
+    "code" : 200,
+    "status": "berhasil",
+    "message": "rekam medis berhasil dihapus"
+}
+```
+-   Failed
+```json
+{
+    "code" : 400,
+    "status": "failed",
+    "message": "rekam medis gagal di hapus"
+}
+```
+<!-- Medical Record Delete End -->
 
 <!-- ============= MEDICAL RECORD END ================ -->
 

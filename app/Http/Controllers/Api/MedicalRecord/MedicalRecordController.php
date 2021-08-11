@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Api\MedicalRecord;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\MedicalRecordRepository\Implement\PatientMedicalRecordRepository;
 use App\Services\MedicalRecordService\Implement\PatientMedicalRecordService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MedicalRecordController extends Controller
 {
 
     protected PatientMedicalRecordService $medicalRecord;
+    private PatientMedicalRecordRepository $medicalRecordRepo;
 
-    public function __construct(PatientMedicalRecordService $medicalRecord)
+    public function __construct(PatientMedicalRecordService $medicalRecord, PatientMedicalRecordRepository $medicalRecordRepo)
     {
         $this->medicalRecord = $medicalRecord;
+        $this->medicalRecordRepo = $medicalRecordRepo;
     }
 
 
@@ -48,6 +52,27 @@ class MedicalRecordController extends Controller
             'code' => 400,
             'status' => 'failed',
             'monitoring_result' => 'belum melakuan monitoring'
+        ]);
+    }
+
+
+    public function deleteMedicalRecord(Request $request)
+    {
+        $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
+
+        $result = $this->medicalRecordRepo->delete($patientHasBeenAuthenticated->id);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'success',
+                'message' => 'rekam medis berhasil di hapus'
+            ]);
+        }
+        return response()->json([
+            'code' => 400,
+            'status' => 'failed',
+            'message' => 'rekam medis tidak ada'
         ]);
     }
 }

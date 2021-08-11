@@ -64,6 +64,11 @@ Route::prefix('patient')->group(function () {
     Route::group(['middleware' => 'auth:patientapi'], function () {
 
         /**
+         * * Route delete patient medical record
+         */
+        Route::post('/record/delete', [MedicalRecordController::class, 'deleteMedicalRecord']);
+
+        /**
          * * Route biodata pasien
          */
         Route::post('/update', [PatientProfileController::class, 'update']);
