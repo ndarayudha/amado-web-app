@@ -34,10 +34,6 @@ function convertImageToBase64($fileName)
  */
 function convertBase64ToImage($base64)
 {
-	$image_parts = explode(",", $base64);
-
-	$image_base64 = base64_decode($image_parts[1]);
-
-	// file_put_contents($file, $image_base64);    
+	$image_base64 = base64_decode($base64);
 	return $image_base64;
 }

@@ -32,4 +32,10 @@ class Doctor extends Model implements CanResetPassword
     {
         return $this->where('username', $username)->first();
     }
+
+    // has one rumah RumahSakit
+    public function hospital()
+    {
+        return $this->hasOne(RumahSakit::class);
+    }
 }

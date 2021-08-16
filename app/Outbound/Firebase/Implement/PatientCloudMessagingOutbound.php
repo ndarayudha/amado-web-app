@@ -25,7 +25,7 @@ class PatientCloudMessagingOutbound implements CloudMessaging
 
     public function sendApiTokenNotification(int $patientId, int $notificationId): void
     {
-        $patientFirebaseToken = $this->patientRepository->getPatient($patientId)->firebase_api_token;
+        $patientFirebaseToken = $this->patientRepository->getUser($patientId)->firebase_api_token;
         $patientNotificationTemplate = $this->getNotificationTemplate($notificationId);
         $notificationBody = $patientNotificationTemplate->description;
         $notificationTitle = $patientNotificationTemplate->title;

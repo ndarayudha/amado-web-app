@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Api\Geolocation;
 
 use App\Http\Controllers\Controller;
 use App\Repositories\GeolocationRepository\Implement\PatientGeolocationRepository;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+
 
 class GeolocationController extends Controller
 {
@@ -35,5 +34,10 @@ class GeolocationController extends Controller
             'status' => 'gagal',
             'data' => 'tidak ada pasien lain yang terdaftar'
         ]);
+    }
+
+
+    public function getAllCloseContactLocation()
+    {
     }
 }
