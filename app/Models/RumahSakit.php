@@ -25,9 +25,9 @@ class RumahSakit extends Model
     }
 
     // belongs to doctor
-    public function doctor()
+    public function doctors()
     {
-        return $this->belongsTo(Doctor::class);
+        return $this->belongsToMany(Doctor::class);
     }
 
     public function patient()

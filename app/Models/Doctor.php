@@ -12,8 +12,6 @@ class Doctor extends Model implements CanResetPassword
 {
     use Notifiable, HasApiTokens;
 
-    protected $guard = 'doctor';
-
     use HasFactory;
 
     protected $fillable = [
@@ -25,7 +23,6 @@ class Doctor extends Model implements CanResetPassword
         'photo',
         'tanggal_lahir',
         'jenis_kelamin',
-        'specialist'
     ];
 
     public function findForPassport($username)
@@ -34,8 +31,14 @@ class Doctor extends Model implements CanResetPassword
     }
 
     // has one rumah RumahSakit
-    public function hospital()
+    public function hospitals()
     {
-        return $this->hasOne(RumahSakit::class);
+        return $this->belongsToMany(RumahSakit::class);
+    }
+
+    // has specialist
+    public function specialists()
+    {
+        return $this->belongsToMany(Specialist::class);
     }
 }

@@ -23,7 +23,6 @@ class CreateDoctorsTable extends Migration
             $table->string('photo')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('specialist')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

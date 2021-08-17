@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 
-const TOKEN_DOES_NOT_EXIST = true;
-const VALIDATOR_FAILS = true;
+// const TOKEN_DOES_NOT_EXIST = true;
+// const VALIDATOR_FAILS = true;
 
 
 class PatientForgotPasswordService implements ForgotPasswordService
@@ -51,13 +51,13 @@ class PatientForgotPasswordService implements ForgotPasswordService
 
 
         if ($validator->fails()) {
-            return VALIDATOR_FAILS;
+            return true;
         } else {
             $token = $request->input('token');
             $isTokenExist = $this->forgotPasswordRepository->getToken($token);
 
             if (!$isTokenExist) {
-                return TOKEN_DOES_NOT_EXIST;
+                return true;
             }
 
             $email = $this->forgotPasswordRepository->getEmailByToken($token);

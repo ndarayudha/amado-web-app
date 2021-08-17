@@ -15,12 +15,12 @@ class RumahSakitSeeder extends Seeder
     public function run()
     {
         ModelsRumahSakit::create([
-            'name' => 'RS Al-Huda',
+            'name' => 'RS A',
             'ruang_id' => '1',
         ]);
 
         ModelsRumahSakit::create([
-            'name' => 'RS Fatimah',
+            'name' => 'RS B',
             'ruang_id' => '2',
         ]);
     }

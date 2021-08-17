@@ -27,16 +27,18 @@ class DoctorProfileController extends Controller
                 'status' => 'berhasil',
                 'message' => 'data dokter telah di update',
                 'user' => [
-                    'id' => $doctorUpdated->id,
-                    'name' => $doctorUpdated->name,
-                    'email' => $doctorUpdated->email,
-                    'jenis_kelamin' => $doctorUpdated->jenis_kelamin,
-                    'tanggal_lahir' => $doctorUpdated->tanggal_lahir,
-                    'address' => $doctorUpdated->address,
-                    'phone' => $doctorUpdated->phone,
-                    'specialist' => $doctorUpdated->specialist,
-                    'created_at' => $doctorUpdated->created_at,
-                    'updated_at' => $doctorUpdated->updated_at,
+                    'id' => $doctorUpdated[0]->id,
+                    'name' => $doctorUpdated[0]->name,
+                    'email' => $doctorUpdated[0]->email,
+                    'jenis_kelamin' => $doctorUpdated[0]->jenis_kelamin,
+                    'tanggal_lahir' => $doctorUpdated[0]->tanggal_lahir,
+                    'photo' => $doctorUpdated[0]->photo,
+                    'address' => $doctorUpdated[0]->address,
+                    'phone' => $doctorUpdated[0]->phone,
+                    'specialist' => $doctorUpdated[0]->specialists[0]->name,
+                    'hospital' => $doctorUpdated[0]->hospitals[0]->name,
+                    'created_at' => $doctorUpdated[0]->created_at,
+                    'updated_at' => $doctorUpdated[0]->updated_at,
                 ]
             ]);
         } catch (Exception $e) {
@@ -99,21 +101,27 @@ class DoctorProfileController extends Controller
 
     public function getBiodata(Request $request)
     {
+
         $doctorData = $this->doctorService->getBiodata($request);
 
         if ($doctorData != null) {
             return response()->json([
-                "code" => 200,
-                "status" => "berhasil",
-                "user" => [
-                    "id" => $doctorData->id,
-                    "name" => $doctorData->name,
-                    "email" => $doctorData->email,
-                    "jenis_kelamin" => $doctorData->jenis_kelamin,
-                    "address" => $doctorData->address,
-                    "tangggal_lahir" => $doctorData->tanggal_lahir,
-                    "phone" => $doctorData->phone,
-                    'specialist' => $doctorData->specialist
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'data dokter telah di update',
+                'user' => [
+                    'id' => $doctorData[0]->id,
+                    'name' => $doctorData[0]->name,
+                    'email' => $doctorData[0]->email,
+                    'jenis_kelamin' => $doctorData[0]->jenis_kelamin,
+                    'tanggal_lahir' => $doctorData[0]->tanggal_lahir,
+                    'photo' => $doctorData[0]->photo,
+                    'address' => $doctorData[0]->address,
+                    'phone' => $doctorData[0]->phone,
+                    'specialist' => $doctorData[0]->specialists[0]->name,
+                    'hospital' => $doctorData[0]->hospitals[0]->name,
+                    'created_at' => $doctorData[0]->created_at,
+                    'updated_at' => $doctorData[0]->updated_at,
                 ]
             ]);
         }

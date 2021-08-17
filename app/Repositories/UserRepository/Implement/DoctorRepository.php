@@ -16,22 +16,45 @@ class DoctorRepository implements UserRepository
         $this->doctorModel = $doctorModel;
     }
 
+    // ! Deprecated
     public function saveUpdateUser($userAuth, $userUpdateData): Object
     {
         $idDoctor = $userAuth->id;
         $newData = $userUpdateData->all();
 
-        $this->doctorModel::find($idDoctor)
-            ->update([
-                'name' => $newData['name'],
-                'jenis_kelamin' => $newData['jenis_kelamin'],
-                'tanggal_lahir' => $newData['tanggal_lahir'],
-                'phone' => $newData['phone'],
-                'address' => $newData['address'],
-                'specialist' => $newData['specialist']
-            ]);
+        $doctor = $this->doctorModel::find($idDoctor);
+        $doctor->update([
+            'name' => $newData['name'],
+            'jenis_kelamin' => $newData['jenis_kelamin'],
+            'tanggal_lahir' => $newData['tanggal_lahir'],
+            'phone' => $newData['phone'],
+            'address' => $newData['address'],
+        ]);
+        $doctor->hospitals()->attach($newData['hospital']);
+        $doctor->specialists()->attach($newData['specialist']);
 
         $doctorUpdated = $this->doctorModel::find($idDoctor);
+
+        return $doctorUpdated;
+    }
+
+    public function updateDoctor($userAuth, $userUpdateData)
+    {
+        $idDoctor = $userAuth->id;
+        $newData = $userUpdateData->all();
+
+        $doctor = $this->doctorModel::find($idDoctor);
+        $doctor->update([
+            'name' => $newData['name'],
+            'jenis_kelamin' => $newData['jenis_kelamin'],
+            'tanggal_lahir' => $newData['tanggal_lahir'],
+            'phone' => $newData['phone'],
+            'address' => $newData['address'],
+        ]);
+        $doctor->hospitals()->attach($newData['hospital']);
+        $doctor->specialists()->attach($newData['specialist']);
+
+        $doctorUpdated = $this->doctorModel::find($idDoctor)->with(['specialists', 'hospitals'])->get();
 
         return $doctorUpdated;
     }
@@ -69,9 +92,16 @@ class DoctorRepository implements UserRepository
         return null;
     }
 
+    // ! Deprecated
     public function getUser($user_id): Doctor
     {
-        $doctor = Doctor::find($user_id);
-        return $doctor;
+        $doctor = $this->doctorModel::find($user_id);
+
+        return $this->doctorModel;
+    }
+
+    public function getDoctor(int $doctor_id)
+    {
+        return $this->doctorModel::find($doctor_id)->with(['specialists', 'hospitals'])->get();
     }
 }

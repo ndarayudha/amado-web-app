@@ -23,5 +23,20 @@ class RuangSeeder extends Seeder
             'name' => 'B',
             'kapasitas_ruang' => '25'
         ]);
+
+        Ruang::create([
+            'name' => 'C',
+            'kapasitas_ruang' => '25'
+        ]);
+
+        Ruang::create([
+            'name' => 'D',
+            'kapasitas_ruang' => '25'
+        ]);
+
+        Ruang::create([
+            'name' => 'E',
+            'kapasitas_ruang' => '25'
+        ]);
     }
 }

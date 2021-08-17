@@ -2,6 +2,7 @@
 
 namespace App\Services\UserService\Implement;
 
+use App\Models\Doctor;
 use App\Repositories\UserRepository\Implement\DoctorRepository;
 use App\Services\UserService\UserService;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +26,8 @@ class DoctorService implements UserService
             'tanggal_lahir' => 'required',
             'phone' => 'required',
             'address' => 'required',
-            'specialist' => 'required'
+            'specialist' => 'required',
+            'hospital' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -35,7 +37,8 @@ class DoctorService implements UserService
         $doctorUpdateData = collect($request);
         $doctorHasBeenAuthenticated = Auth::guard('doctor-api')->user();
 
-        $doctorUpdated = $this->doctorRepository->saveUpdateUser($doctorHasBeenAuthenticated, $doctorUpdateData);
+        $doctorUpdated = $this->doctorRepository->updateDoctor($doctorHasBeenAuthenticated, $doctorUpdateData);
+
         return $doctorUpdated;
     }
 
@@ -57,7 +60,7 @@ class DoctorService implements UserService
         $doctorHasBeenAuthenticated = Auth::guard('doctor-api')->user();
 
         // convert to image
-        $image = convertBase64ToImage($doctorPhotoFile);
+        $image = convertBase64ToImageOnly($doctorPhotoFile);
 
         // save profile
         $doctorPhotoUpdated = $this->doctorRepository->savePhotoProfile($doctorHasBeenAuthenticated, $image);
@@ -83,7 +86,7 @@ class DoctorService implements UserService
     public function getBiodata($request)
     {
         $doctorId = $request->id;
-        $doctorBiodata = $this->doctorRepository->getUser($doctorId);
+        $doctorBiodata = $this->doctorRepository->getDoctor($doctorId);
         return $doctorBiodata;
     }
 }

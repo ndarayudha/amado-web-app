@@ -37,3 +37,16 @@ function convertBase64ToImage($base64)
 	$image_base64 = base64_decode($base64);
 	return $image_base64;
 }
+
+
+/**
+ * * Konversi base64 ke gambar web
+ * 
+ * @param base64 file base64 yang dienkripsi
+ */
+function convertBase64ToImageOnly($base64)
+{
+	$splitBase64 = explode(',', $base64);
+	$image_base64 = base64_decode($splitBase64[1]);
+	return $image_base64;
+}
