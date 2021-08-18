@@ -103,25 +103,25 @@ class DoctorProfileController extends Controller
     {
 
         $doctorData = $this->doctorService->getBiodata($request);
-
-        if ($doctorData != null) {
+        // dd(count($doctorData[0]->specialists->all()) === 0);
+        if ($doctorData !== null) {
             return response()->json([
                 'code' => 200,
                 'status' => 'berhasil',
-                'message' => 'data dokter telah di update',
+                'message' => 'data dokter ada',
                 'user' => [
-                    'id' => $doctorData[0]->id,
-                    'name' => $doctorData[0]->name,
-                    'email' => $doctorData[0]->email,
-                    'jenis_kelamin' => $doctorData[0]->jenis_kelamin,
-                    'tanggal_lahir' => $doctorData[0]->tanggal_lahir,
-                    'photo' => $doctorData[0]->photo,
-                    'address' => $doctorData[0]->address,
-                    'phone' => $doctorData[0]->phone,
-                    'specialist' => $doctorData[0]->specialists[0]->name,
-                    'hospital' => $doctorData[0]->hospitals[0]->name,
-                    'created_at' => $doctorData[0]->created_at,
-                    'updated_at' => $doctorData[0]->updated_at,
+                    'id' => $doctorData[0]->id ? $doctorData[0]->id : "",
+                    'name' => $doctorData[0]->name ? $doctorData[0]->name : "",
+                    'email' => $doctorData[0]->email ? $doctorData[0]->email : "",
+                    'jenis_kelamin' => $doctorData[0]->jenis_kelamin ? $doctorData[0]->jenis_kelamin : "",
+                    'tanggal_lahir' => $doctorData[0]->tanggal_lahir ? $doctorData[0]->tanggal_lahir : "",
+                    'photo' => $doctorData[0]->photo ? $doctorData[0]->photo : "",
+                    'address' => $doctorData[0]->address ? $doctorData[0]->address : "",
+                    'phone' => $doctorData[0]->phone ? $doctorData[0]->phone : "",
+                    'specialist' => count($doctorData[0]->specialists->all()) !== 0 ? $doctorData[0]->specialists[0]->name : "",
+                    'hospital' => count($doctorData[0]->specialists->all()) !== 0 ? $doctorData[0]->hospitals[0]->name : "",
+                    'created_at' => $doctorData[0]->created_at ? $doctorData[0]->created_at : "",
+                    'updated_at' => $doctorData[0]->updated_at ? $doctorData[0]->updated_at : "",
                 ]
             ]);
         }

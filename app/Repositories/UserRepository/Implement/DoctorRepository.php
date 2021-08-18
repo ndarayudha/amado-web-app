@@ -102,6 +102,8 @@ class DoctorRepository implements UserRepository
 
     public function getDoctor(int $doctor_id)
     {
-        return $this->doctorModel::find($doctor_id)->with(['specialists', 'hospitals'])->get();
+        $data = $this->doctorModel::find($doctor_id);
+
+        return $data ? $data->with(['specialists', 'hospitals'])->get() : null;
     }
 }
