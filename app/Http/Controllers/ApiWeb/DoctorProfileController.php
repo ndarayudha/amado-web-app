@@ -94,7 +94,7 @@ class DoctorProfileController extends Controller
         return response()->json([
             'code' => 400,
             'status' => 'gagal',
-            'message' => 'gambar gagal diupload'
+            'message' => 'belum ada gambar'
         ]);
     }
 

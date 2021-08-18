@@ -59,7 +59,6 @@ class DoctorRepository implements UserRepository
         return $doctorUpdated;
     }
 
-
     public function savePhotoProfile($userAuth, $photo)
     {
         $idDoctor = $userAuth->id;

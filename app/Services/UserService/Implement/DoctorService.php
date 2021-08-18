@@ -6,6 +6,7 @@ use App\Models\Doctor;
 use App\Repositories\UserRepository\Implement\DoctorRepository;
 use App\Services\UserService\UserService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class DoctorService implements UserService
@@ -42,7 +43,7 @@ class DoctorService implements UserService
         return $doctorUpdated;
     }
 
-    // update patient photo profile
+
     public function updateUserPhoto($request)
     {
         $validator = Validator::make($request->all(), [
@@ -67,6 +68,7 @@ class DoctorService implements UserService
 
         return $doctorPhotoUpdated;
     }
+
 
 
     public function getUserPhoto($request)
