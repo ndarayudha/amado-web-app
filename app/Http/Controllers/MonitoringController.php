@@ -102,4 +102,23 @@ class MonitoringController extends Controller
             'message' => 'pasien belum mengupdate lokasinya'
         ]);
     }
+
+    public function getMedicalRecords()
+    {
+        $result = $this->patientMonitoringRepo->getAllRecord();
+
+        if ($result != null) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'records' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'pasien belum mempunyai rekam medis'
+        ]);
+    }
 }

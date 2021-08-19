@@ -37,6 +37,9 @@ Route::prefix('doctor')->group(function () {
     // Get Patient Current Location by Id
     Route::get('/patient/location', [MonitoringController::class, 'getPatientLocationById']);
 
+    // Get Patient Medical Records
+    Route::get('/patient/records', [MonitoringController::class, 'getMedicalRecords']);
+
     // get biodata dokter
     Route::get('/bio', [DoctorProfileController::class, 'getBiodata']);
 
