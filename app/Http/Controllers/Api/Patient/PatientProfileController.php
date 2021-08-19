@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Patient;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\UserRepository\Implement\PatientRepository;
 use Illuminate\Http\Request;
 use App\Services\UserService\Implement\PatientService;
 use Exception;
@@ -10,11 +11,14 @@ use Exception;
 class PatientProfileController extends Controller
 {
     protected $patientService;
+    protected PatientRepository $patientRepository;
 
     public function __construct(
-        PatientService $patientService
+        PatientService $patientService,
+        PatientRepository $patientRepository
     ) {
         $this->patientService = $patientService;
+        $this->patientRepository = $patientRepository;
     }
 
 
@@ -149,6 +153,30 @@ class PatientProfileController extends Controller
             'code' => 400,
             'status' => 'gagal',
             'message' => 'pasien belum terdaftar'
+        ]);
+    }
+
+
+
+
+    /**
+     * * Please Refactor This
+     * * Split Into another controller
+     */
+    public function getListPatient(Request $request)
+    {
+        $result = $this->patientRepository->getPatients();
+        if ($result !== null) {
+            return response()->json([
+                'code' => 200,
+                'message' => 'data ditemukan',
+                'data' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'message' => 'data tidak ditemukan'
         ]);
     }
 }

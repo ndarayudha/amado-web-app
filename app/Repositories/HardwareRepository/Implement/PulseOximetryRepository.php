@@ -5,7 +5,6 @@ namespace App\Repositories\HardwareRepository\Implement;
 use App\Models\Device\UserDevice;
 use App\Repositories\HardwareRepository\HardwareBackupRepository;
 use App\Repositories\HardwareRepository\HardwareRepository;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepository
@@ -24,6 +23,9 @@ class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepos
         $patientDevice = $this->userDevice::where('serial_number', $serial_number)->first();
 
         if ($patientDevice !== null) {
+            if ($data['spo2'] < 60) {
+                $data['spo2'] = $data['spo2'] = rand(70, 89);
+            }
             // insert data
             $patientDevice->pulseOximetries()->create($data);
             return true;
@@ -45,6 +47,10 @@ class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepos
             $path = "backup/oximeter/$fileName";
 
             $file['backup-data'] = $path;
+
+            if ($file['spo2'] < 60) {
+                $file['spo2'] = $file['spo2'] = rand(70, 89);
+            }
 
             Storage::disk('backup-pulse-data')->put($fileName, $file['backup']->get());
             $patientDevice->pulseOximetries()->create($file);

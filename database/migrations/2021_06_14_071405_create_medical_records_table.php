@@ -20,6 +20,7 @@ class CreateMedicalRecordsTable extends Migration
             $table->string('averrage_bpm')->nullable();
             $table->string('status')->nullable();
             $table->string('recomendation')->nullable();
+            $table->string('konfirmasi')->default('belum terkonfirmasi');
 
             // relation
             $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();

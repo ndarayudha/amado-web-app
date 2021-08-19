@@ -92,4 +92,15 @@ class PatientRepository implements UserRepository
         $patient = Patient::find($user_id);
         return $patient;
     }
+
+
+    /**
+     * * This is made for PatientProfileControlller
+     * * Please split to another Repository yet
+     */
+    public function getPatients()
+    {
+        $patient = $this->patientModel::get(['id', 'name', 'jenis_kelamin', 'alamat']);
+        return $patient ? $patient : null;
+    }
 }

@@ -22,7 +22,7 @@ class PatientMedicalRecordService implements IMedicalRecordService
     {
         $spo2Result = $resultSensor[0];
         $bpmResult = $resultSensor[1];
-        $status = $this->checkDiagnose($spo2Result);
+        $status = $this->checkDiagnose(floor($spo2Result));
         $recomendation = $this->giveRecomendation($status);
 
         $this->medicalRecordRepo->save($patient_id, $spo2Result, $bpmResult, $status, $recomendation);
@@ -58,7 +58,7 @@ class PatientMedicalRecordService implements IMedicalRecordService
         ];
 
         foreach ($rules as $status => $range) {
-            if (in_array($resultSensor, $range)) {
+            if (in_array(floor($resultSensor), $range)) {
                 return $status;
                 break;
             }

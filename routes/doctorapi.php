@@ -3,7 +3,9 @@
 use App\Http\Controllers\ApiWeb\DoctorAuthController;
 use App\Http\Controllers\ApiWeb\DoctorProfileController;
 use App\Http\Controllers\ApiWeb\ForgotPasswordController;
+use App\Http\Controllers\Api\Patient\PatientProfileController;
 use App\Http\Controllers\Api\Geolocation\GeolocationController;
+use App\Http\Controllers\MonitoringController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -19,6 +21,21 @@ Route::prefix('doctor')->group(function () {
     Route::prefix('geolocation')->group(function () {
         Route::get('/patient/all', [GeolocationController::class, 'getAllPatientLocation']);
     });
+
+    // Get Patients for Daftar Pasien
+    Route::get('/patients', [PatientProfileController::class, 'getListPatient']);
+
+    // Get Patient photo
+    Route::get('/patient/photo', [MonitoringController::class, 'getPatientPhoto']);
+
+    // Get Patient Monitoring Total and Current Time
+    Route::get('/patient/monitoring', [MonitoringController::class, 'getPatientMonitoringTotalAndCurrentTime']);
+
+    // Get Patient Current Data Sensor
+    Route::get('/patient/sensor', [MonitoringController::class, 'getCurrentSpo2AndBpm']);
+
+    // Get Patient Current Location by Id
+    Route::get('/patient/location', [MonitoringController::class, 'getPatientLocationById']);
 
     // get biodata dokter
     Route::get('/bio', [DoctorProfileController::class, 'getBiodata']);

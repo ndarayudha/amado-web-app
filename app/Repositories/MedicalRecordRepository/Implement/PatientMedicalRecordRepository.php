@@ -100,8 +100,13 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
     }
 
 
-    public function delete($patient_id)
+    public function delete($id)
     {
-        return MedicalRecord::where('patient_id', $patient_id)->delete();
+        return MedicalRecord::where('id', $id)->delete();
     }
+
+    // public function delete($patient_id)
+    // {
+    //     return MedicalRecord::where('patient_id', $patient_id)->delete();
+    // }
 }

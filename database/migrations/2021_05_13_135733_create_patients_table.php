@@ -27,6 +27,7 @@ class CreatePatientsTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->text('alamat')->nullable();
+            $table->string('konfirmasi')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
