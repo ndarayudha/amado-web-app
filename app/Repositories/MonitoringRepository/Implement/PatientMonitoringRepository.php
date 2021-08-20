@@ -2,6 +2,7 @@
 
 namespace App\Repositories\MonitoringRepository\Implement;
 
+use App\Models\CloseContact\CloseContact;
 use App\Models\Hardware\PulseOximetry;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\Models\Monitoring\Monitoring;
@@ -17,19 +18,22 @@ class PatientMonitoringRepository implements MonitoringRepository
     private PatientRepository $patientRepository;
     private PulseOximetry $pulseOximetry;
     private MedicalRecord $medicalRecord;
+    private CloseContact $closeContact;
 
     public function __construct(
         Patient $model,
         Monitoring $monitoring,
         PatientRepository $patientRepository,
         PulseOximetry $pulseOximetry,
-        MedicalRecord $medicalRecord
+        MedicalRecord $medicalRecord,
+        CloseContact $closeContact
     ) {
         $this->patientModel = $model;
         $this->monitoring = $monitoring;
         $this->patientRepository = $patientRepository;
         $this->pulseOximetry = $pulseOximetry;
         $this->medicalRecord = $medicalRecord;
+        $this->closeContact = $closeContact;
     }
 
     public function update(int $patient_id, int $currentUpdateStatus)
@@ -87,7 +91,7 @@ class PatientMonitoringRepository implements MonitoringRepository
     {
         $patient = $this->patientModel::find($patient_id);
         $deviceId = $patient->userDevice()->get(['id']);
-        $pulseOximetry = $this->pulseOximetry::find($deviceId);
+        $pulseOximetry = $this->pulseOximetry::where('user_device_id', $deviceId[0]['id'])->get()->last();
         return $pulseOximetry ? $pulseOximetry : null;
     }
 
@@ -115,5 +119,44 @@ class PatientMonitoringRepository implements MonitoringRepository
         }
 
         return $patients ? $patients : null;
+    }
+
+    // * Medical Record Detail
+    public function getPatientBioRecord(int $patient_id)
+    {
+        $patientIdBasedOnMedicalRecordId = $this->medicalRecord::where('id', $patient_id)->get(['patient_id', 'averrage_spo2', 'averrage_bpm', 'status'])->toArray();
+        $patient = $this->patientModel::where('id', $patientIdBasedOnMedicalRecordId[0]['patient_id'])->get(['name', 'tanggal_lahir', 'phone', 'alamat'])->toArray();
+
+        $photo = $this->getPhoto($patientIdBasedOnMedicalRecordId[0]['patient_id']);
+
+        $patient[0]['spo2'] = $patientIdBasedOnMedicalRecordId[0]['averrage_spo2'];
+        $patient[0]['bpm'] = $patientIdBasedOnMedicalRecordId[0]['averrage_bpm'];
+        $patient[0]['status'] = $patientIdBasedOnMedicalRecordId[0]['status'];
+        $patient[0]['photo'] = $photo;
+
+        return $patient ? $patient : null;
+    }
+
+    public function getPulseOximeterData(int $patient_id)
+    {
+        $patientIdBasedOnMedicalRecordId = $this->medicalRecord::where('id', $patient_id)->get('patient_id')->toArray();
+        $patient = $this->patientModel::find($patientIdBasedOnMedicalRecordId[0]['patient_id']);
+        $deviceId = $patient->userDevice()->get(['id'])[0]['id'];
+        $dataSensor = $this->pulseOximetry::where('user_device_id', $deviceId)->get();
+
+        return $dataSensor ? $dataSensor : null;
+    }
+
+    public function getPatientCloseContact(int $medicalRecordId)
+    {
+        $patientIdBasedOnMedicalRecordId = $this->medicalRecord::where('id', $medicalRecordId)->get('patient_id')->toArray();
+        $patient = $this->patientModel::find($patientIdBasedOnMedicalRecordId[0]['patient_id']);
+        $result = $this->closeContact::where('patient_id', $patient['id'])->get();
+        return $result ? $result : null;
+    }
+
+    public function deleteMedicalRecordById(int $medicalRecordId)
+    {
+        return $this->medicalRecord::where('id', $medicalRecordId)->delete();
     }
 }

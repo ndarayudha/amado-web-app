@@ -67,13 +67,7 @@ class MonitoringController extends Controller
             return response()->json([
                 'code' => 200,
                 'status' => 'berhasil',
-                'data' => [
-                    'deviceId' => $result[0]->id,
-                    'spo2' => $result[0]->spo2,
-                    'bpm' => $result[0]->bpm,
-                    'latitude' => $result[0]->latitude,
-                    'longitude ' => $result[0]->longitude,
-                ]
+                'data' => $result
             ]);
         }
 
@@ -119,6 +113,85 @@ class MonitoringController extends Controller
             'code' => 400,
             'status' => 'gagal',
             'message' => 'pasien belum mempunyai rekam medis'
+        ]);
+    }
+
+
+    // * Medical Record Detail
+    public function getDetailMedicalRecordBio(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->getPatientBioRecord($request->id);
+
+        if ($result != null) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'result' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'pasien belum mempunyai rekam medis'
+        ]);
+    }
+
+    public function getOximetryData(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->getPulseOximeterData($request->id);
+
+        if ($result != null) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'data' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'pasien belum melakukan monitoring dengan pulse oximetry'
+        ]);
+    }
+
+    public function getPatientCloseContactById(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->getPatientCloseContact($request->id);
+
+        if ($result != null) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'data' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'pasien belum mempunyai rekam medis'
+        ]);
+    }
+
+
+    public function deletePatientMedicalRecordById(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->deleteMedicalRecordById($request->id);
+
+        if ($result === 1) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'rekam medis berhasil di hapus'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'rekam medis gagal di hapus'
         ]);
     }
 }

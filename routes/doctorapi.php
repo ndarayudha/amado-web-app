@@ -40,6 +40,18 @@ Route::prefix('doctor')->group(function () {
     // Get Patient Medical Records
     Route::get('/patient/records', [MonitoringController::class, 'getMedicalRecords']);
 
+    // * Detail Rekam Medis
+    Route::get('/patient', [MonitoringController::class, 'getDetailMedicalRecordBio']);
+
+    // Get Oximetry Data
+    Route::get('/patient/pulse', [MonitoringController::class, 'getOximetryData']);
+
+    // Get Patient Close Contact By id
+    Route::get('/patient/contact', [MonitoringController::class, 'getPatientCloseContactById']);
+
+    // Delete Medical Record By id
+    Route::delete('/record/delete', [MonitoringController::class, 'deletePatientMedicalRecordById']);
+
     // get biodata dokter
     Route::get('/bio', [DoctorProfileController::class, 'getBiodata']);
 
