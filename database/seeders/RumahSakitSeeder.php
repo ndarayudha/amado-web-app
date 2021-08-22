@@ -16,12 +16,14 @@ class RumahSakitSeeder extends Seeder
     {
         ModelsRumahSakit::create([
             'name' => 'RS A',
-            'ruang_id' => '1',
+            'alamat' => 'Dusun Karanglo, Desa Sukonatar, Kecamatan Srono, Banyuwangi',
+            'telp' => '081123456789'
         ]);
 
         ModelsRumahSakit::create([
             'name' => 'RS B',
-            'ruang_id' => '2',
+            'alamat' => 'Dusun Karanglo, Desa Sukonatar, Kecamatan Srono, Banyuwangi',
+            'telp' => '081123456789'
         ]);
     }
 }

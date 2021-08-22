@@ -6,6 +6,8 @@ use App\Models\Patient\Patient;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Ruang;
+use App\Models\RiwayatPenanganan;
+use App\Models\Oksigen;
 
 class RumahSakit extends Model
 {
@@ -19,9 +21,9 @@ class RumahSakit extends Model
         return $this->hasOne(Ruang::class);
     }
 
-    public function oksigen()
+    public function oksigens()
     {
-        return $this->hasOne(Oksigen::class);
+        return $this->BelongsToMany(Oksigen::class);
     }
 
     // belongs to doctor
@@ -33,5 +35,10 @@ class RumahSakit extends Model
     public function patient()
     {
         return $this->belongsTo(Patient::class);
+    }
+
+    public function riwayatPenangnanans()
+    {
+        return $this->hasMany(RiwayatPenanganan::class);
     }
 }

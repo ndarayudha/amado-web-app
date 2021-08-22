@@ -9,6 +9,12 @@ use App\Http\Controllers\MonitoringController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::prefix('oksigen')->group(function () {
+    Route::get('/', [MonitoringController::class, 'getCurrentOksigen']);
+    Route::post('/insert', [MonitoringController::class, 'tambahKapasitasOksigenRumahSakit']);
+    Route::post('/kurangi', [MonitoringController::class, 'kurangiKapasitasOksigenRumahSakit']);
+});
+
 Route::prefix('doctor')->group(function () {
 
     Route::post('/v1/register', [DoctorAuthController::class, 'register']);
@@ -51,6 +57,9 @@ Route::prefix('doctor')->group(function () {
 
     // Delete Medical Record By id
     Route::delete('/record/delete', [MonitoringController::class, 'deletePatientMedicalRecordById']);
+
+    // Save Penanganan
+    Route::post('/penanganan/insert', [MonitoringController::class, 'insertRiwayatPenanganan']);
 
     // get biodata dokter
     Route::get('/bio', [DoctorProfileController::class, 'getBiodata']);

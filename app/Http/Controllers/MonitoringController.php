@@ -194,4 +194,81 @@ class MonitoringController extends Controller
             'message' => 'rekam medis gagal di hapus'
         ]);
     }
+
+    public function insertRiwayatPenanganan(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->saveRiwayatPenanganan($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'penanganan berhasil diberikan'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'penanganan gagal diberikan'
+        ]);
+    }
+
+    public function tambahKapasitasOksigenRumahSakit(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->tambahKapasitasOksigen($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'kapasitas oksigen berhasil ditambah'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'kapasitas oksigen gagal ditambahkan'
+        ]);
+    }
+
+
+    public function kurangiKapasitasOksigenRumahSakit(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->kurangiKapasitasOksigen($request);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => 'kapasitas oksigen berhasil dikurangi'
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'kapasitas oksigen gagal dikurang'
+        ]);
+    }
+
+    public function getCurrentOksigen(Request $request)
+    {
+        $result = $this->patientMonitoringRepo->getKapasitasOksigen($request->id);
+
+        if ($result !== null) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'data' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'tidak ada data oksigen'
+        ]);
+    }
 }

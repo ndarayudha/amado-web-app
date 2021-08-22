@@ -6,9 +6,14 @@ use App\Models\CloseContact\CloseContact;
 use App\Models\Hardware\PulseOximetry;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\Models\Monitoring\Monitoring;
+use App\Models\Oksigen;
 use App\Models\Patient\Patient;
+use App\Models\RiwayatPenanganan;
+use App\Models\RumahSakit;
 use App\Repositories\MonitoringRepository\MonitoringRepository;
 use App\Repositories\UserRepository\Implement\PatientRepository;
+use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class PatientMonitoringRepository implements MonitoringRepository
@@ -19,6 +24,9 @@ class PatientMonitoringRepository implements MonitoringRepository
     private PulseOximetry $pulseOximetry;
     private MedicalRecord $medicalRecord;
     private CloseContact $closeContact;
+    private RiwayatPenanganan $riwayatPenanganan;
+    private RumahSakit $rumahSakit;
+    private Oksigen $oksigen;
 
     public function __construct(
         Patient $model,
@@ -26,7 +34,10 @@ class PatientMonitoringRepository implements MonitoringRepository
         PatientRepository $patientRepository,
         PulseOximetry $pulseOximetry,
         MedicalRecord $medicalRecord,
-        CloseContact $closeContact
+        CloseContact $closeContact,
+        RiwayatPenanganan $riwayatPenanganan,
+        RumahSakit $rumahSakit,
+        Oksigen $oksigen
     ) {
         $this->patientModel = $model;
         $this->monitoring = $monitoring;
@@ -34,6 +45,9 @@ class PatientMonitoringRepository implements MonitoringRepository
         $this->pulseOximetry = $pulseOximetry;
         $this->medicalRecord = $medicalRecord;
         $this->closeContact = $closeContact;
+        $this->riwayatPenanganan = $riwayatPenanganan;
+        $this->rumahSakit = $rumahSakit;
+        $this->oksigen = $oksigen;
     }
 
     public function update(int $patient_id, int $currentUpdateStatus)
@@ -158,5 +172,87 @@ class PatientMonitoringRepository implements MonitoringRepository
     public function deleteMedicalRecordById(int $medicalRecordId)
     {
         return $this->medicalRecord::where('id', $medicalRecordId)->delete();
+    }
+
+    public function saveRiwayatPenanganan(Request $penanganan): bool
+    {
+        $medicalRecord = $this->medicalRecord::find($penanganan->rekam_medis_id);
+
+        try {
+            if ($penanganan['oksigen'] !== null) {
+                $this->riwayatPenanganan::create([
+                    'ket_spo2' => $penanganan['spo2'],
+                    'ket_bpm' => $penanganan['bpm'],
+                    'diagnosa' => $penanganan['diagnosa'],
+                    'tindak_lanjut' => $penanganan['tindakan'],
+                    'tanggal_masuk' => $penanganan['tanggal_masuk'],
+                    'tanggal_keluar' => $penanganan['tanggal_keluar'],
+                    'penanganan' => "rawat inap dan diberikan tabung oksigen sejumlah" . $penanganan['oksigen'] . 'buah',
+                    'saran' => $penanganan['saran']
+                ]);
+            } else {
+                $this->riwayatPenanganan::create([
+                    'ket_spo2' => $penanganan['spo2'],
+                    'ket_bpm' => $penanganan['bpm'],
+                    'diagnosa' => $penanganan['diagnosa'],
+                    'tindak_lanjut' => $penanganan['tindakan'],
+                    'saran' => $penanganan['saran']
+                ]);
+            }
+
+            $medicalRecord->update([
+                'konfirmasi' => 'Terkonfirmasi'
+            ]);
+
+            $currentRiwayatPenanganan = $this->riwayatPenanganan::find($penanganan->rekam_medis_id);
+            $currentRiwayatPenanganan->medicalRecords()->attach($penanganan->rekam_medis_id);
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function tambahKapasitasOksigen(Request $request)
+    {
+        try {
+            $rumahSakit = $this->rumahSakit::find($request->id);
+            $oksigenId = $rumahSakit->oksigens()->get()->toArray()[0]['id'];
+            $rsOksigen = $this->oksigen::where('id', $oksigenId);
+            $currentOksigen = (int) $rsOksigen->get(['kapasitas_oksigen'])->toArray()[0]['kapasitas_oksigen'];
+
+            $rsOksigen->update([
+                'kapasitas_oksigen' => $currentOksigen + (int) $request->kapasitas
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+
+    public function kurangiKapasitasOksigen(Request $request)
+    {
+        try {
+            $rumahSakit = $this->rumahSakit::find($request->id);
+            $oksigenId = $rumahSakit->oksigens()->get()->toArray()[0]['id'];
+            $rsOksigen = $this->oksigen::where('id', $oksigenId);
+            $currentOksigen = (int) $rsOksigen->get(['kapasitas_oksigen'])->toArray()[0]['kapasitas_oksigen'];
+
+            $rsOksigen->update([
+                'kapasitas_oksigen' => $currentOksigen - (int) $request->kapasitas
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getKapasitasOksigen(int $rumah_sakit_id)
+    {
+        $rumahSakit = $this->rumahSakit::find($rumah_sakit_id);
+        return $rumahSakit ? $rumahSakit->oksigens()->get() : null;
     }
 }

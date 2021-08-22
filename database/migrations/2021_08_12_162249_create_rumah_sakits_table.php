@@ -15,11 +15,10 @@ class CreateRumahSakitsTable extends Migration
     {
         Schema::create('rumah_sakits', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('ruang_id')->unsigned()->nullable();
-            $table->bigInteger('patient_id')->unsigned()->nullable();
-            $table->bigInteger('oksigen_id')->unsigned()->nullable();
             $table->string('name')->nullable();
-            $table->foreign('ruang_id')->references('id')->on('ruangs')->cascadeOnDelete();
+            $table->string('alamat')->nullable();
+            $table->string('telp')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }

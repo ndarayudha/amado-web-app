@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Model;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use App\Models\RiwayatPenanganan;
 
 class Doctor extends Model implements CanResetPassword
 {
@@ -40,5 +41,10 @@ class Doctor extends Model implements CanResetPassword
     public function specialists()
     {
         return $this->belongsToMany(Specialist::class);
+    }
+
+    public function riwayatPenangnanans()
+    {
+        return $this->belongsToMany(RiwayatPenanganan::class);
     }
 }

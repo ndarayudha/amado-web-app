@@ -12,6 +12,7 @@ use App\Models\Monitoring\Monitoring;
 use App\Models\Notification\Notification;
 use App\Models\Notification\NotificationTemplate;
 use Illuminate\Contracts\Auth\CanResetPassword;
+use App\Models\RiwayatPenanganan;
 
 class Patient extends Model implements CanResetPassword
 {
@@ -84,5 +85,10 @@ class Patient extends Model implements CanResetPassword
     public function findForPassport($username)
     {
         return $this->where('username', $username)->first();
+    }
+
+    public function riwayatPenangnanans()
+    {
+        return $this->hasMany(RiwayatPenanganan::class);
     }
 }

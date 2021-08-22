@@ -3,6 +3,7 @@
 namespace App\Models\MedicalRecord;
 
 use App\Models\Patient\Patient;
+use App\Models\RiwayatPenanganan;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
@@ -37,5 +38,10 @@ class MedicalRecord extends Model
     {
         return Carbon::parse($this->attributes['updated_at'])
             ->format('d, M Y H:i');
+    }
+
+    public function riwayatPenangnanans()
+    {
+        return $this->belongsToMany(RiwayatPenanganan::class);
     }
 }
