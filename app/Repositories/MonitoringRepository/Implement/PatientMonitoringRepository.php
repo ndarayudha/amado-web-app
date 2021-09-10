@@ -2,6 +2,7 @@
 
 namespace App\Repositories\MonitoringRepository\Implement;
 
+use App\Mail\PenangananMail;
 use App\Models\CloseContact\CloseContact;
 use App\Models\Hardware\PulseOximetry;
 use App\Models\MedicalRecord\MedicalRecord;
@@ -15,6 +16,7 @@ use App\Repositories\UserRepository\Implement\PatientRepository;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class PatientMonitoringRepository implements MonitoringRepository
 {
@@ -139,7 +141,7 @@ class PatientMonitoringRepository implements MonitoringRepository
     public function getPatientBioRecord(int $patient_id)
     {
         $patientIdBasedOnMedicalRecordId = $this->medicalRecord::where('id', $patient_id)->get(['patient_id', 'averrage_spo2', 'averrage_bpm', 'status'])->toArray();
-        $patient = $this->patientModel::where('id', $patientIdBasedOnMedicalRecordId[0]['patient_id'])->get(['name', 'tanggal_lahir', 'phone', 'alamat'])->toArray();
+        $patient = $this->patientModel::where('id', $patientIdBasedOnMedicalRecordId[0]['patient_id'])->get(['name', 'tanggal_lahir', 'phone', 'alamat', 'jenis_kelamin'])->toArray();
 
         $photo = $this->getPhoto($patientIdBasedOnMedicalRecordId[0]['patient_id']);
 
@@ -178,6 +180,8 @@ class PatientMonitoringRepository implements MonitoringRepository
     {
         $medicalRecord = $this->medicalRecord::find($penanganan->rekam_medis_id);
 
+        // $this->sendEmail($penanganan->all());
+
         try {
             if ($penanganan['oksigen'] !== null) {
                 $this->riwayatPenanganan::create([
@@ -190,6 +194,10 @@ class PatientMonitoringRepository implements MonitoringRepository
                     'penanganan' => "rawat inap dan diberikan tabung oksigen sejumlah" . $penanganan['oksigen'] . 'buah',
                     'saran' => $penanganan['saran']
                 ]);
+
+                // Kurangi Kapasitas oksigen
+
+                // kurangi kapasitas ruangan
             } else {
                 $this->riwayatPenanganan::create([
                     'ket_spo2' => $penanganan['spo2'],
@@ -200,6 +208,8 @@ class PatientMonitoringRepository implements MonitoringRepository
                 ]);
             }
 
+            Log::info("medial Record $penanganan->rekam_medis_id");
+
             $medicalRecord->update([
                 'konfirmasi' => 'Terkonfirmasi'
             ]);
@@ -207,10 +217,20 @@ class PatientMonitoringRepository implements MonitoringRepository
             $currentRiwayatPenanganan = $this->riwayatPenanganan::find($penanganan->rekam_medis_id);
             $currentRiwayatPenanganan->medicalRecords()->attach($penanganan->rekam_medis_id);
 
+
+
             return true;
         } catch (Exception $e) {
             return false;
         }
+    }
+
+
+    public function sendEmail(array $data)
+    {
+        Mail::to('yudhayofan1@gmail.com')->send(new PenangananMail($data));
+
+        return 'email telah dikirim';
     }
 
     public function tambahKapasitasOksigen(Request $request)

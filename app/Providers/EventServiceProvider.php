@@ -2,10 +2,6 @@
 
 namespace App\Providers;
 
-use App\Events\LoanCreated as LoanCreatedEvent;
-use App\Listeners\LoanCreated as LoanCreatedListener;
-use App\Events\LoanDeleted as LoanDeletedEvent;
-use App\Listeners\LoanDeleted as LoanDeletedListener;
 
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,12 +18,6 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
-        LoanCreatedEvent::class => [
-            LoanCreatedListener::class,
-        ],
-        LoanDeletedEvent::class => [
-            LoanDeletedListener::class,
         ],
     ];
 

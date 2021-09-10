@@ -1,0 +1,20 @@
+.kop-container {
+    margin: 40px 60px;
+}
+
+hr {
+    border-width: 100px;
+}
+
+.title-container h1 {
+    text-align: center;
+    font-size: 1.9rem;
+    text-decoration: underline;
+    margin-top: 50px;
+}
+
+.row.ttd .col {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}

@@ -93,7 +93,7 @@ class PatientMonitoringService implements MonitoringService
         $resultSpo2 = $sumTotalSpo2Data / $totalLengthSpo2Data;
         $resultBpm = $sumTotalBpmData / $totalLengthBpmData;
 
-        return array($resultSpo2,$resultBpm);
+        return array(floor($resultSpo2), floor($resultBpm));
     }
 
 

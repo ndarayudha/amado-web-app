@@ -11,6 +11,7 @@ const mix = require("laravel-mix");
  |
  */
 
+mix.js("resources/js/app.js", "public/js");
 // mix.js("resources/js/client/home.js", "public/client/js");
 
 // mix.css("resources/css/client/home.css", "public/client/css")

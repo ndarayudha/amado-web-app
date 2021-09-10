@@ -9,6 +9,11 @@ use App\Http\Controllers\MonitoringController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/mail', function () {
+    // return view('mail.isolasi-mandiri');
+    return view('mail.rawat-inap');
+});
+
 Route::prefix('oksigen')->group(function () {
     Route::get('/', [MonitoringController::class, 'getCurrentOksigen']);
     Route::post('/insert', [MonitoringController::class, 'tambahKapasitasOksigenRumahSakit']);

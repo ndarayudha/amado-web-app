@@ -8,6 +8,7 @@ use App\Services\UserService\UserService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
 
 class DoctorService implements UserService
 {
@@ -78,8 +79,11 @@ class DoctorService implements UserService
         $imagePath = $this->doctorRepository->getPhotoProfile($doctorHasBeenAuthenticated->id);
 
         if ($imagePath != null) {
-            $base64 =  convertImageToBase64($imagePath);
-            return $base64;
+            $base64Data = Cache::remember('doctor-photo', 3, function () use ($imagePath) {
+                $base64 =  convertImageToBase64($imagePath);
+                return $base64;
+            });
+            return $base64Data;
         }
 
         return null;
@@ -88,7 +92,11 @@ class DoctorService implements UserService
     public function getBiodata($request)
     {
         $doctorId = $request->id;
-        $doctorBiodata = $this->doctorRepository->getDoctor($doctorId);
-        return $doctorBiodata;
+        $doctorProfile = Cache::remember('doctor-bio', 60 * 60, function () use ($doctorId) {
+            $doctorBiodata = $this->doctorRepository->getDoctor($doctorId);
+            return $doctorBiodata;
+        });
+
+        return $doctorProfile;
     }
 }

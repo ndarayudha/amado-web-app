@@ -13,9 +13,12 @@
     "axios": "^0.21",
     "laravel-mix": "^6.0.6",
     "lodash": "^4.17.19",
-    "postcss": "^8.1.14"
+    "postcss": "^8.1.14",
+    "pusher-js": "^7.0.3"
   },
   "dependencies": {
-    "animate.css": "^4.1.1"
+    "animate.css": "^4.1.1",
+    "laravel-echo": "^1.11.1",
+    "socket.io-client": "^4.1.3"
   }
 }

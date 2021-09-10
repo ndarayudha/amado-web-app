@@ -2,15 +2,18 @@
 
 namespace App\Services\AuthApi\Implement;
 
+use App\Events\PatientRegisteredEvent;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\LogoutRequest;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Jobs\ProcessNotification;
+use App\Models\Doctor;
+use App\Notifications\PatientRegisteredNotification;
 use App\Repositories\AuthApi\Implement\PatientAuthRepository;
 use App\Services\AuthApi\AuthService;
 use App\Services\NotificationService\Implement\PatientNotificationService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Notification;
 
 class PatientAuthService implements AuthService
 {
@@ -44,7 +47,7 @@ class PatientAuthService implements AuthService
                 $this->notificationService->updateTopic($patient->id, ID_GENERAL_NEW_USER);
 
                 // Create Job to Process Notification
-                ProcessNotification::dispatch($patient->id, ID_GENERAL_NEW_USER)->delay(now()->addMinute(1));
+                // ProcessNotification::dispatch($patient->id, ID_GENERAL_NEW_USER)->delay(now()->addMinute(1));
 
                 Log::info("Patient has been login", array($patient));
 
@@ -66,12 +69,15 @@ class PatientAuthService implements AuthService
 
             $patientData = $this->patientAuthRepository->saveUser($dataWithHashPassword->all());
 
-            // attach notification
-            $this->notificationService->updateTopic($patientData->id, ID_GENERAL_NEW_USER);
+            event(new PatientRegisteredEvent($patientData));
+            $doctor = Doctor::find(1);
+            Notification::send($doctor, new PatientRegisteredNotification($patientData));
+            // // attach notification
+            // $this->notificationService->updateTopic($patientData->id, ID_GENERAL_NEW_USER);
 
-            // Create Job to Process Notification
-            ProcessNotification::dispatch($patientData->id, ID_GENERAL_NEW_USER)
-                ->delay(now()->addMinutes(1));
+            // // Create Job to Process Notification
+            // ProcessNotification::dispatch($patientData->id, ID_GENERAL_NEW_USER)
+            //     ->delay(now()->addMinutes(1));
 
             Log::info("Patient has been register", array($patientData));
             return $patientData;
