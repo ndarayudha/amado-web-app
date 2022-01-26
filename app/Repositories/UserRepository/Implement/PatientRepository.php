@@ -100,7 +100,7 @@ class PatientRepository implements UserRepository
      */
     public function getPatients()
     {
-        $patient = $this->patientModel::get(['id', 'name', 'jenis_kelamin', 'alamat']);
+        $patient = $this->patientModel::get(['id', 'name', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'longitude', 'latitude', 'konfirmasi']);
         return $patient ? $patient : null;
     }
 }

@@ -59,6 +59,19 @@ class DoctorRepository implements UserRepository
         return $doctorUpdated;
     }
 
+    public function savePhotoProfileV2($userAuth, $photo)
+    {
+        $idDoctor = $userAuth->id;
+        $this->doctorModel::find($idDoctor)
+            ->update([
+                'photo' => $photo
+            ]);
+
+        $doctorPhotoUpdated = $this->doctorModel::find($idDoctor);
+
+        return $doctorPhotoUpdated;
+    }
+
     public function savePhotoProfile($userAuth, $photo)
     {
         $idDoctor = $userAuth->id;

@@ -4,6 +4,7 @@ namespace App\Repositories\MonitoringRepository\Implement;
 
 use App\Mail\PenangananMail;
 use App\Models\CloseContact\CloseContact;
+use App\Models\Doctor;
 use App\Models\Hardware\PulseOximetry;
 use App\Models\MedicalRecord\MedicalRecord;
 use App\Models\Monitoring\Monitoring;
@@ -180,7 +181,7 @@ class PatientMonitoringRepository implements MonitoringRepository
     {
         $medicalRecord = $this->medicalRecord::find($penanganan->rekam_medis_id);
 
-        // $this->sendEmail($penanganan->all());
+        $this->sendEmail($penanganan->all());
 
         try {
             if ($penanganan['oksigen'] !== null) {
@@ -274,5 +275,27 @@ class PatientMonitoringRepository implements MonitoringRepository
     {
         $rumahSakit = $this->rumahSakit::find($rumah_sakit_id);
         return $rumahSakit ? $rumahSakit->oksigens()->get() : null;
+    }
+
+
+    // * Notification
+    public function getPatientConfirm(int $doctor_id){
+        
+        $doctor = Doctor::find($doctor_id);
+
+        $notifications = [];
+        foreach ($doctor->unreadNotifications as $notification) {
+            array_push($notifications, $notification);
+        }
+
+        return $notifications;
+    }
+
+    public function readNotification(int $doctor_id, string $notification_id){
+        $doctor = Doctor::find($doctor_id);
+
+        $result = $doctor->unreadNotifications()->where('id', $notification_id)->update(['read_at' => now()]);
+
+        return $result == 1 ? true : false;
     }
 }

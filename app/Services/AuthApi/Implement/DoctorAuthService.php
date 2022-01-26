@@ -54,7 +54,7 @@ class DoctorAuthService implements AuthService
 
             $doctorData = $this->doctorAuthRepository->saveUser($dataWithHashPassword->all());
 
-            Log::info("Patient has been register", array($doctorData));
+            Log::info("Doctor has been register", array($doctorData));
             return $doctorData;
         }
     }

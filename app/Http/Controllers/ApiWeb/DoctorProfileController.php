@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\UserService\Implement\DoctorService;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class DoctorProfileController extends Controller
 {
@@ -55,8 +56,9 @@ class DoctorProfileController extends Controller
     {
 
         try {
-            $doctorPhoto = $this->doctorService->updateUserPhoto($request);
+            $doctorPhoto = $this->doctorService->updateUserPhotoV2($request);
 
+            Log::info($request->all());
             return response()->json([
                 'code' => 200,
                 'status' => 'berhasil',
@@ -103,7 +105,7 @@ class DoctorProfileController extends Controller
     {
 
         $doctorData = $this->doctorService->getBiodata($request);
-        // dd(count($doctorData[0]->specialists->all()) === 0);
+        
         if ($doctorData !== null) {
             return response()->json([
                 'code' => 200,

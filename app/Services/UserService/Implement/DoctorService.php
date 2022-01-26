@@ -45,6 +45,25 @@ class DoctorService implements UserService
     }
 
 
+    public function updateUserPhotoV2($request){
+        $validator = Validator::make($request->all(), [
+            'photo' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return;
+        }
+
+        // get doctor authenticated
+        $doctorHasBeenAuthenticated = Auth::guard('doctor-api')->user();
+
+        // save profile
+        $doctorPhotoUpdated = $this->doctorRepository->savePhotoProfileV2($doctorHasBeenAuthenticated, $request->photo);
+
+        return $doctorPhotoUpdated;
+    }
+
+
     public function updateUserPhoto($request)
     {
         $validator = Validator::make($request->all(), [
@@ -92,10 +111,7 @@ class DoctorService implements UserService
     public function getBiodata($request)
     {
         $doctorId = $request->id;
-        $doctorProfile = Cache::remember('doctor-bio', 60 * 60, function () use ($doctorId) {
-            $doctorBiodata = $this->doctorRepository->getDoctor($doctorId);
-            return $doctorBiodata;
-        });
+        $doctorProfile = $this->doctorRepository->getDoctor($doctorId);
 
         return $doctorProfile;
     }

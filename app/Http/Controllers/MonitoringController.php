@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\MonitoringRepository\Implement\PatientMonitoringRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MonitoringController extends Controller
 {
@@ -269,6 +270,47 @@ class MonitoringController extends Controller
             'code' => 400,
             'status' => 'gagal',
             'message' => 'tidak ada data oksigen'
+        ]);
+    }
+
+    // * Notification
+    public function getPatientConfirmNotification(Request $request){
+
+        $doctorHasBeenAuthenticated = Auth::guard('doctor-api')->user();
+        $result = $this->patientMonitoringRepo->getPatientConfirm($doctorHasBeenAuthenticated->id);
+
+        if ($result !== null) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'notifications' => $result
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'belum ada notifikasi'
+        ]);
+    }
+
+    public function readNotification(Request $request){
+
+        $doctorHasBeenAuthenticated = Auth::guard('doctor-api')->user();
+        $result = $this->patientMonitoringRepo->readNotification($doctorHasBeenAuthenticated->id, $request->notification_id);
+
+        if ($result) {
+            return response()->json([
+                'code' => 200,
+                'status' => 'berhasil',
+                'message' => "notifikasi $request->notification_id telah di read"
+            ]);
+        }
+
+        return response()->json([
+            'code' => 400,
+            'status' => 'gagal',
+            'message' => 'notifikasi tidak ada / sudah dibaca'
         ]);
     }
 }

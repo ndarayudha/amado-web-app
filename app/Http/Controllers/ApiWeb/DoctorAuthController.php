@@ -21,7 +21,6 @@ class DoctorAuthController extends Controller
 
     public function register(RegisterRequest $request)
     {
-
         try {
             $doctor = $this->doctorAuthService->register($request);
             $token = $this->doctorAuthService->createAccessToken($doctor);

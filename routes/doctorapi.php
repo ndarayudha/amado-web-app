@@ -74,6 +74,12 @@ Route::prefix('doctor')->group(function () {
         // * Update Biodata
         Route::post('/update', [DoctorProfileController::class, 'update']);
 
+        // * Get Patient Confirm Notification
+        Route::prefix('/notification')->group(function () {
+            Route::get('/patient', [MonitoringController::class, 'getPatientConfirmNotification']);
+            Route::post('/read', [MonitoringController::class, 'readNotification']);
+        });
+
         // * Update Foto Profil
         Route::post('/add-profile-photo', [DoctorProfileController::class, 'saveUserProfile']);
 

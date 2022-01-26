@@ -44,7 +44,7 @@ class PatientAuthService implements AuthService
 
             if ($patient !== null) {
                 // attach notification
-                $this->notificationService->updateTopic($patient->id, ID_GENERAL_NEW_USER);
+                // $this->notificationService->updateTopic($patient->id, ID_GENERAL_NEW_USER);
 
                 // Create Job to Process Notification
                 // ProcessNotification::dispatch($patient->id, ID_GENERAL_NEW_USER)->delay(now()->addMinute(1));
