@@ -38,6 +38,20 @@ class PatientRepository implements UserRepository
     }
 
 
+    public function savePhotoProfileV2($userAuth, $photo)
+    {
+        $idPatient = $userAuth->id;
+        $this->patientModel::find($idPatient)
+            ->update([
+                'photo' => $photo
+            ]);
+
+        $patientPhotoUpdated = $this->patientModel::find($idPatient);
+
+        return $patientPhotoUpdated;
+    }
+
+
     // save patien photo profile to database
     public function savePhotoProfile($userAuth, $photo)
     {
@@ -100,7 +114,7 @@ class PatientRepository implements UserRepository
      */
     public function getPatients()
     {
-        $patient = $this->patientModel::get(['id', 'name', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'longitude', 'latitude', 'konfirmasi']);
+        $patient = $this->patientModel::get(['id', 'name', 'photo', 'tanggal_lahir', 'jenis_kelamin', 'alamat', 'longitude', 'latitude', 'konfirmasi']);
         return $patient ? $patient : null;
     }
 }

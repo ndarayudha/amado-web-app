@@ -66,6 +66,24 @@ class PatientService implements UserService
     }
 
 
+    public function updateUserPhotoV2($request){
+        $validator = Validator::make($request->all(), [
+            'photo' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return;
+        }
+
+        // get doctor authenticated
+        $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
+
+        // save profile
+        $patientPhotoUpdated = $this->patientRepository->savePhotoProfileV2($patientHasBeenAuthenticated, $request->photo);
+
+        return $patientPhotoUpdated;
+    }
+
     // update patient photo profile
     public function updateUserPhoto($request)
     {

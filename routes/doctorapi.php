@@ -5,6 +5,9 @@ use App\Http\Controllers\ApiWeb\DoctorProfileController;
 use App\Http\Controllers\ApiWeb\ForgotPasswordController;
 use App\Http\Controllers\Api\Patient\PatientProfileController;
 use App\Http\Controllers\Api\Geolocation\GeolocationController;
+use App\Http\Controllers\KonfrimasiController;
+use App\Http\Controllers\MailAwsController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MonitoringController;
 use Illuminate\Support\Facades\Route;
 
@@ -86,4 +89,22 @@ Route::prefix('doctor')->group(function () {
         // * Ambil Foto Profile
         Route::post('/user-profile', [DoctorProfileController::class, 'getUserPhoto']);
     });
+});
+
+// Konfimasi
+Route::prefix('konfirmasi')->group(function () {
+    Route::get('/patient', [KonfrimasiController::class, 'getPatientById']);
+});
+
+// Mail Google
+// Konfimasi
+// Route::prefix('mail')->group(function () {
+//     Route::get('/send', [MailController::class, 'send']);
+//     Route::get('/access_token', [MailController::class, 'getAccessToken']);
+//     Route::post('/konfirmasi', [MailController::class, 'sendKonfirmasiEmail']);
+// });
+
+// Mail AWS
+Route::prefix('mail')->group(function () {
+    Route::post('/konfirmasi', [MailAwsController::class, 'sendKonfirmasiEmail']);
 });

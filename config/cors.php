@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['doctor/*'],
+    'paths' => ['*'],
 
     'allowed_methods' => ['*'],
 

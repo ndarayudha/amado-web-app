@@ -82,7 +82,7 @@ class PatientProfileController extends Controller
     {
 
         try {
-            $patientPhoto = $this->patientService->updateUserPhoto($request);
+            $patientPhoto = $this->patientService->updateUserPhotoV2($request);
 
             return response()->json([
                 'code' => 200,
