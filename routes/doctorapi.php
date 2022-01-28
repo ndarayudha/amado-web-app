@@ -108,3 +108,10 @@ Route::prefix('konfirmasi')->group(function () {
 Route::prefix('mail')->group(function () {
     Route::post('/konfirmasi', [MailAwsController::class, 'sendKonfirmasiEmail']);
 });
+
+
+// Statistik
+Route::prefix('statistik')->group(function () {
+    Route::get('/count', [MonitoringController::class, 'getCountModel']);
+    Route::get('/patient', [MonitoringController::class, 'getCurrentPatient']);
+});

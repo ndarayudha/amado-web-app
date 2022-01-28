@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CloseContact\CloseContact;
+use App\Models\MedicalRecord\MedicalRecord;
+use App\Models\Patient\Patient;
 use App\Repositories\MonitoringRepository\Implement\PatientMonitoringRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -311,6 +314,32 @@ class MonitoringController extends Controller
             'code' => 400,
             'status' => 'gagal',
             'message' => 'notifikasi tidak ada / sudah dibaca'
+        ]);
+    }
+
+    public function getCountModel(){
+        $patients = Patient::all()->count();
+        $kontak_erat = CloseContact::all()->count();
+        $rekam_medis = MedicalRecord::all()->count();
+
+        $statistik = [
+            'total_pasien' => $patients,
+            'total_kontak_erat' => $kontak_erat,
+            'total_rekam_medis' => $rekam_medis,
+        ];  
+
+        return response()->json([
+            'code' => 200,
+            'counts' => $statistik
+        ]);
+    }
+
+    public function getCurrentPatient(){
+        $patients = Patient::latest()->get(['id', 'name', 'alamat', 'tanggal_lahir', 'created_at']);
+
+        return response()->json([
+            'code' => 200,
+            'patients' => $patients
         ]);
     }
 }
