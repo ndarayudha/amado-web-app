@@ -21,6 +21,7 @@ class CreateMedicalRecordsTable extends Migration
             $table->string('status')->nullable();
             $table->string('recomendation')->nullable();
             $table->string('konfirmasi')->default('belum terkonfirmasi');
+            $table->integer('last_monitoring_code')->nullable();
 
             // relation
             $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();

@@ -142,14 +142,11 @@ class PatientMonitoringRepository implements MonitoringRepository
     public function getPatientBioRecord(int $patient_id)
     {
         $patientIdBasedOnMedicalRecordId = $this->medicalRecord::where('id', $patient_id)->get(['patient_id', 'averrage_spo2', 'averrage_bpm', 'status'])->toArray();
-        $patient = $this->patientModel::where('id', $patientIdBasedOnMedicalRecordId[0]['patient_id'])->get(['name', 'tanggal_lahir', 'phone', 'alamat', 'jenis_kelamin'])->toArray();
-
-        $photo = $this->getPhoto($patientIdBasedOnMedicalRecordId[0]['patient_id']);
-
+        $patient = $this->patientModel::where('id', $patientIdBasedOnMedicalRecordId[0]['patient_id'])->get(['name', 'tanggal_lahir', 'photo', 'phone', 'alamat', 'jenis_kelamin'])->toArray();
         $patient[0]['spo2'] = $patientIdBasedOnMedicalRecordId[0]['averrage_spo2'];
         $patient[0]['bpm'] = $patientIdBasedOnMedicalRecordId[0]['averrage_bpm'];
         $patient[0]['status'] = $patientIdBasedOnMedicalRecordId[0]['status'];
-        $patient[0]['photo'] = $photo;
+        
 
         return $patient ? $patient : null;
     }

@@ -83,14 +83,15 @@ class PatientMedicalRecordRepository implements IMedicalRecordRepository
     }
 
 
-    public function save($patient_id, $avgSpo2, $avgBpm, $status, $recomendation)
+    public function save($patient_id, $avgSpo2, $avgBpm, $status, $recomendation, $last_code)
     {
         $patient = $this->patient::find($patient_id);
         $patient->medicalRecord()->create([
             'averrage_spo2' => $avgSpo2,
             'averrage_bpm' => $avgBpm,
             'status' => $status,
-            'recomendation' => $recomendation
+            'recomendation' => $recomendation,
+            'last_monitoring_code' => $last_code
         ]);
     }
 

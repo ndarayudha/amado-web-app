@@ -3,6 +3,7 @@
 namespace App\Services\HardwareService\Implement;
 
 use App\Models\Device\UserDevice;
+use App\Models\Monitoring\Monitoring;
 use App\Repositories\HardwareRepository\Implement\PulseOximetryRepository;
 use App\Services\HardwareService\HardwareService;
 use Illuminate\Http\Request;
@@ -26,11 +27,21 @@ class PulseOximetryService implements HardwareService
     }
 
 
+    public function getJumlahMonitoring($serial_number){
+        $userDeviceId = UserDevice::where('serial_number', $serial_number)->first()->patient_id;
+        $jumlah_pengukuran = Monitoring::where('patient_id', $userDeviceId)->first()->jumlah_pengukuran;
+
+        return $jumlah_pengukuran;
+    }
+
+
     public function storeSensorData(Request $data)
     {
 
         $sensorData = $data->except('serial_number');
         $backupExist = $data->has('backup');
+
+        $jumlah_pengukuran = $this->getJumlahMonitoring($data->serial_number);
 
         $serialNumberDevice = $data->serial_number;
 
@@ -44,7 +55,7 @@ class PulseOximetryService implements HardwareService
             $result = $this->repositoryOximeter->storeTxt($serialNumberDevice, $sensorData);
             return $result;
         } else if ($sensorData !== null && $deviceStatus === DEVICE_ACTIVATED) {
-            $result = $this->repositoryOximeter->store($sensorData, $serialNumberDevice);
+            $result = $this->repositoryOximeter->store($sensorData, $serialNumberDevice, $jumlah_pengukuran);
             return $result;
         }
 

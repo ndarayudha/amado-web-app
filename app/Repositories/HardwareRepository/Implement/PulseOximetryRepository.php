@@ -17,7 +17,7 @@ class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepos
         $this->userDevice = $userDevice;
     }
 
-    public function store($data, $serial_number)
+    public function store($data, $serial_number, $jumlah_pengukuran)
     {
         // cari device pasien
         $patientDevice = $this->userDevice::where('serial_number', $serial_number)->first();
@@ -27,7 +27,14 @@ class PulseOximetryRepository implements HardwareRepository, HardwareBackupRepos
                 $data['spo2'] = $data['spo2'] = rand(70, 89);
             }
             // insert data
-            $patientDevice->pulseOximetries()->create($data);
+            $patientDevice->pulseOximetries()->create([
+                'spo2' => $data['spo2'],
+                'bpm' => $data['bpm'],
+                'longitude' => $data['longitude'],
+                'latitude' => $data['latitude'],
+                'id_pengukuran' => $jumlah_pengukuran
+
+            ]);
             return true;
         }
 

@@ -76,6 +76,13 @@ class PatientHardwareService implements DeviceService, DeviceOperationService
         $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
         $deviceStatus = $this->hardwareRepository->on($patientHasBeenAuthenticated->id, $request->status);
 
+        $jumlah_pengukuran = $patientHasBeenAuthenticated->monitoring()->first()->jumlah_pengukuran;
+        
+        // Update Jumlah Pengukuran
+        $patientHasBeenAuthenticated->monitoring()->update([
+            'jumlah_pengukuran' => $jumlah_pengukuran + 1
+        ]);
+
         Log::info("Enabled Device for patient id {$patientHasBeenAuthenticated->id}");
 
         return $deviceStatus;
@@ -105,7 +112,6 @@ class PatientHardwareService implements DeviceService, DeviceOperationService
         } else {
             $this->monitoringService->updateTotalMonitoring($patientHasBeenAuthenticated->id, 1);
         }
-        // upgrade monitoring value to + 1
 
         return $deviceStatus;
     }

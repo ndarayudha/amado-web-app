@@ -13,7 +13,8 @@ class Device extends Model
     protected $table = 'devices';
 
     protected $fillable = [
-        'name'
+        'name',
+        'serial_number'
     ];
 
     public function userDevice()

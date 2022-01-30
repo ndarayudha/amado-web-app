@@ -109,7 +109,7 @@ class PatientProfileController extends Controller
 
     public function getUserPhoto(Request $request)
     {
-        $base64Format = $this->patientService->getUserPhoto($request);
+        $base64Format = $this->patientService->getUserPhotoV2($request);
 
         if ($base64Format != null) {
             return response()->json([

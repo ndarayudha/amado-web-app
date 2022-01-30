@@ -15,7 +15,8 @@ class DeviceSeeder extends Seeder
     public function run()
     {
         Device::create([
-            'name' => 'Pulse Oximetry'
+            'name' => 'Pulse Oximetry',
+            'serial_number' => '123456'
         ]);
     }
 }

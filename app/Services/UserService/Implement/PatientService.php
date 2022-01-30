@@ -111,6 +111,18 @@ class PatientService implements UserService
     }
 
 
+    public function getUserPhotoV2($request){
+        $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();
+
+        $image = $patientHasBeenAuthenticated->photo;
+
+        if ($image != null) {
+            return $image;
+        }
+        return null;
+    }
+
+
     public function getUserPhoto($request)
     {
         $patientHasBeenAuthenticated = Auth::guard('patientapi')->user();

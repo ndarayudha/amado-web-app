@@ -2,7 +2,7 @@
 
 namespace App\Services\MedicalRecordService\Implement;
 
-
+use App\Models\Monitoring\Monitoring;
 use App\Repositories\MedicalRecordRepository\Implement\PatientMedicalRecordRepository;
 use App\Services\MedicalRecordService\IMedicalRecordService;
 
@@ -24,8 +24,9 @@ class PatientMedicalRecordService implements IMedicalRecordService
         $bpmResult = $resultSensor[1];
         $status = $this->checkDiagnose(floor($spo2Result));
         $recomendation = $this->giveRecomendation($status);
+        $last_code = Monitoring::where('patient_id', 1)->first()->jumlah_pengukuran;
 
-        $this->medicalRecordRepo->save($patient_id, $spo2Result, $bpmResult, $status, $recomendation);
+        $this->medicalRecordRepo->save($patient_id, $spo2Result, $bpmResult, $status, $recomendation, $last_code);
     }
 
 

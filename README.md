@@ -54,58 +54,73 @@ Hardware yang terintegrasi ini bertugas untuk mendapatkan data saturasi oksigen 
 
 # API Android
 
--   [Autentikasi](#autentikasi)
-    -   [Login](#login)
-        -   [Pasien](#l_pasien)
-    -   [Register](#register)
-        -   [Pasien](#r_pasien)
-    -   [Logout](#logout)
-        -   [Pasien](#lg_pasien)
-    -   [Update](#update)
-        -   [Pasien](#up_pasien)
-    -   [Upload Photo](#photo)
-        -   [Pasien](#ph_pasien)
-    -   [Get Photo](#get_photo)
-        -   [Pasien](#get_ph_pasien)
-    -   [Get Pasien](#get_biodata)
-        -   [Pasien](#get_patient)
--   [Reset Password](#reset_passowrd)
-    -   [Forgot](#forgot)
-        -   [Pasien](#forgot_pasien)
-    -   [Reset](#reset)
-        -   [Pasien](#reset_pasien)
--   [Notification](#notification)
-    -   [Topic](#notification_topic)
-        -   [Update Topic](#n_topic_update)
-        -   [Delete Topic](#n_topic_delete)
-        -   [Get Topic](#n_topic_get)
-    -   [Token](#notification_token)
-        -   [Update token](#n_token_update)
-        -   [Delete token](#n_token_delete)
-        -   [Get token](#n_token_get)
--   [Device](#device)
-    -   [Create Hardware Identifier](#d_hardware)
-        -   [Pasien](#dh_pasien)
-    -   [Mobile Identifier](#d_mobile)
-        -   [Pasien](#dm_pasien)
-    -   [Enable/Disable Device](#en_device)
-        -   [Pasien](#en_pasien)
-    -   [Get Serial Number](#en_device_serial)
-        -   [Pasien](#en_serial)
--   [Kontak Erat](#kontak_erat)
-    -   [Isi form kontak erat](#kontak_form)
-        -   [Insert](#kontak_erat_insert)
--   [Geolokasi](#geolokasi)
-    -   [Update Patient Location](#patient_location)
-        -   [Update](#p_location_update)
-    -   [Get All Patient Location](#all_patient_location)
-        -   [Get](#all_location_update)
--   [Monitoring](#m_monitoring)
-    -   [Get Monitoring Result](#monitoring_result)
--   [Rekam Medis](#rekam_medis)
-    -   [Rekam Medis Pasien](#patient_record)
-        -   [Get](#patient_record_get)
-        -   [Delete](#patient_record_delete)
+- [Manajemen Pasien Gejala Hipoksia Terintegrasi Berbasis Web](#manajemen-pasien-gejala-hipoksia-terintegrasi-berbasis-web)
+  - [Tentang](#tentang)
+  - [Integrasi Android](#integrasi-android)
+  - [Integrasi Hardware](#integrasi-hardware)
+- [Cara Install](#cara-install)
+- [API Android](#api-android)
+- [API Hardware](#api-hardware)
+- [<a name="autentikasi"></a>Autentikasi](#autentikasi)
+  - [<a name="login"></a>Login](#login)
+      - [<a name="l_pasien"></a>Login Pasien](#login-pasien)
+  - [<a name="register"></a>Register](#register)
+      - [<a name="r_pasien"></a>Register Pasien](#register-pasien)
+  - [<a name="logout"></a>Logout](#logout)
+      - [<a name="lg_pasien"></a>Logout Pasien](#logout-pasien)
+  - [<a name="update"></a>Update](#update)
+      - [<a name="up_pasien"></a>Update Pasien](#update-pasien)
+  - [<a name="photo"></a>Update Photo](#update-photo)
+      - [<a name="ph_pasien"></a>Upload Photo Pasien](#upload-photo-pasien)
+  - [<a name="get_photo"></a>Get Photo](#get-photo)
+      - [<a name="get_ph_pasien"></a>Pasien](#pasien)
+  - [<a name="get_biodata"></a>Get Biodata](#get-biodata)
+      - [<a name="biodata_pasien"></a>Pasien](#pasien-1)
+- [<a name="reset_password"></a>Reset Password](#reset-password)
+  - [<a name="forgot"></a>Forgot](#forgot)
+      - [<a name="forgot_pasien"></a>Forgot Password Pasien](#forgot-password-pasien)
+  - [<a name="reset"></a>Reset](#reset)
+      - [<a name="reset_pasien"></a>Reset Password Pasien](#reset-password-pasien)
+- [<a name="kontak_erat"></a>Kontak Erat](#kontak-erat)
+  - [<a name="kontak_form"></a>Isi Form Kontak Erat](#isi-form-kontak-erat)
+    - [<a name="kontak_erat_insert"></a>Insert](#insert)
+- [<a name="notification"></a>Notifikasi](#notifikasi)
+  - [<a name="notification_topic"></a>Topic Notification](#topic-notification)
+      - [<a name="n_topic_update"></a>Update Topic](#update-topic)
+      - [Value = ID Topic](#value--id-topic)
+      - [<a name="n_topic_delete"></a>Delete Topic](#delete-topic)
+      - [Value = ID Topic](#value--id-topic-1)
+      - [<a name="n_topic_get"></a>Get All Topics](#get-all-topics)
+  - [<a name="notification_token"></a>Firebase Token Notification](#firebase-token-notification)
+      - [<a name="n_token_update"></a>Update Token](#update-token)
+      - [<a name="n_token_delete"></a>Delete Token](#delete-token)
+      - [<a name="n_token_get"></a>Get Token](#get-token)
+- [<a name="device"></a>Device](#device)
+  - [<a name="d_hardware"></a>Create Hardware Identifier](#create-hardware-identifier)
+    - [<a name="dh_pasien"></a>Pasien](#pasien-2)
+  - [<a name="d_mobile"></a>Create Android Identifier](#create-android-identifier)
+    - [<a name="dm_pasien"></a>Pasien](#pasien-3)
+  - [<a name="en_device"></a>Enable/Disable Device](#enabledisable-device)
+    - [<a name="en_pasien"></a>Pasien](#pasien-4)
+  - [<a name="en_device_serial"></a>Enable/Get Serial Number](#enableget-serial-number)
+    - [<a name="en_serial"></a>Pasien](#pasien-5)
+- [<a name="m_monitoring"></a>Monitoring](#monitoring)
+  - [<a name="monitoring_result"></a>Get Monitoring Result](#get-monitoring-result)
+- [<a name="geolokasi"></a>Geolokasi](#geolokasi)
+  - [<a name="patient_location"></a>Update Patient Location](#update-patient-location)
+    - [<a name="p_location_update"></a>Update](#update-1)
+  - [<a name="all_patient_location"></a>Get All Patient Location](#get-all-patient-location)
+    - [<a name="all_location_update"></a>GET](#get)
+- [<a name="rekam_medis"></a>Medical Record](#medical-record)
+  - [<a name="patient_record"></a>Rekam Medis Pasien](#rekam-medis-pasien)
+    - [<a name="petient_record_get"></a>Get](#get-1)
+    - [<a name="patient_record_delete"></a>Delete](#delete)
+- [<a name="pulse"></a>Pulse Oximetry](#pulse-oximetry)
+  - [<a name="pulse_insert"></a>Insert Spo2 & Bpm](#insert-spo2--bpm)
+      - [<a name="sen_pasien"></a>Pasien](#pasien-6)
+  - [<a name="pulse_get"></a>Get Data Sensor](#get-data-sensor)
+      - [<a name="pulse_data"></a>Pasien](#pasien-7)
+  - [<a name="pulse_get"></a>Get Detail Rekam Medis](#get-detail-rekam-medis)
 
 
 # API Hardware
@@ -1275,6 +1290,72 @@ Response :
     "code": 400,
     "status": "gagal",
     "message": "Device tidak terdaftar"
+}
+```
+
+
+
+## <a name="pulse_get"></a>Get Detail Rekam Medis
+-   Method : GET
+-   Endpoint : '/sensor/detail?id= (id_rekam_medis)'
+-   Header : 
+    -   Content-Type : application/json
+
+Response :
+-   Success :
+```json
+{
+    "code": 200,
+    "data_pengukuran": {
+        "pengukuran_1": [
+            {
+                "spo2": "99",
+                "bpm": "120",
+                "longitude": "010101010101",
+                "latitude": "010101010101",
+                "created_at": "2022-01-30T17:15:52.000000Z"
+            },
+            {
+                "spo2": "96",
+                "bpm": "118",
+                "longitude": "010101010101",
+                "latitude": "010101010101",
+                "created_at": "2022-01-30T17:15:55.000000Z"
+            },
+        ],
+        "pengukuran_2": [
+            {
+                "spo2": "74",
+                "bpm": "40",
+                "longitude": "010101010101",
+                "latitude": "010101010101",
+                "created_at": "2022-01-30T17:16:37.000000Z"
+            },
+            {
+                "spo2": "99",
+                "bpm": "67",
+                "longitude": "010101010101",
+                "latitude": "010101010101",
+                "created_at": "2022-01-30T17:16:40.000000Z"
+            },
+        ],
+        "pengukuran_3": [
+            {
+                "spo2": "99",
+                "bpm": "120",
+                "longitude": "010101010101",
+                "latitude": "010101010101",
+                "created_at": "2022-01-30T17:16:57.000000Z"
+            },
+            {
+                "spo2": "99",
+                "bpm": "120",
+                "longitude": "010101010101",
+                "latitude": "010101010101",
+                "created_at": "2022-01-30T17:17:00.000000Z"
+            },
+        ]
+    }
 }
 ```
 

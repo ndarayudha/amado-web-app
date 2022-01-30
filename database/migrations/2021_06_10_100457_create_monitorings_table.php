@@ -18,6 +18,7 @@ class CreateMonitoringsTable extends Migration
             $table->bigInteger('patient_id')->unsigned();
             $table->bigInteger('device_id')->unsigned()->default(1);
             $table->integer('total_monitoring')->default(0);
+            $table->integer('jumlah_pengukuran')->default(0);
 
             // relationship
             $table->foreign('patient_id')->references('id')->on('patients')->cascadeOnDelete();

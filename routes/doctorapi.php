@@ -9,6 +9,7 @@ use App\Http\Controllers\KonfrimasiController;
 use App\Http\Controllers\MailAwsController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\SensorController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -114,4 +115,11 @@ Route::prefix('mail')->group(function () {
 Route::prefix('statistik')->group(function () {
     Route::get('/count', [MonitoringController::class, 'getCountModel']);
     Route::get('/patient', [MonitoringController::class, 'getCurrentPatient']);
+});
+
+
+// Get Data Sensor By Id
+Route::prefix('/sensor')->group(function () {
+    Route::get('/', [SensorController::class, 'getSensorDataById']);
+    Route::get('/detail', [SensorController::class, 'getDetailSensorDataAndroid']);
 });

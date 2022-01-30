@@ -130,7 +130,7 @@ class MonitoringController extends Controller
             return response()->json([
                 'code' => 200,
                 'status' => 'berhasil',
-                'result' => $result
+                'data' => $result[0]
             ]);
         }
 

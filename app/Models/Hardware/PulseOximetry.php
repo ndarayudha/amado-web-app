@@ -17,7 +17,8 @@ class PulseOximetry extends Model
         'bpm',
         'latitude',
         'longitude',
-        'backup-data'
+        'backup-data',
+        'id_pengukuran'
     ];
 
     /**

@@ -16,6 +16,7 @@ class CreatePulseOximetriesTable extends Migration
         Schema::create('pulse_oximetries', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_device_id')->unsigned();
+            $table->string('id_pengukuran')->nullable();
             $table->string('spo2');
             $table->string('bpm');
             $table->string('latitude');
