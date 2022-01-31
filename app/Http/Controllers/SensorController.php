@@ -18,6 +18,24 @@ class SensorController extends Controller
         ]);
     }
 
+    public function getLastMonitoringCode(Request $request){
+        $last_monitoring_code = MedicalRecord::find($request->id)->last_monitoring_code;
+
+        $current_code = $last_monitoring_code + 1;
+
+        $codes = [];
+
+        for($i = 0; $i < 3; $i++){
+            $codes[$i] = $current_code - 1;
+            $current_code--;
+        }
+
+        return response()->json([
+            'code' => 200,
+            'last_monitoring_code' => $codes
+        ]);
+    }
+
     public function getDetailSensorDataAndroid(Request $request)
     {
         $last_monitoring_code = MedicalRecord::find($request->id)->last_monitoring_code;

@@ -121,5 +121,6 @@ Route::prefix('statistik')->group(function () {
 // Get Data Sensor By Id
 Route::prefix('/sensor')->group(function () {
     Route::get('/', [SensorController::class, 'getSensorDataById']);
+    Route::get('/code', [SensorController::class, 'getLastMonitoringCode']);
     Route::get('/detail', [SensorController::class, 'getDetailSensorDataAndroid']);
 });
