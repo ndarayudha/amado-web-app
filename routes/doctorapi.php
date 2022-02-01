@@ -123,4 +123,5 @@ Route::prefix('/sensor')->group(function () {
     Route::get('/', [SensorController::class, 'getSensorDataById']);
     Route::get('/code', [SensorController::class, 'getLastMonitoringCode']);
     Route::get('/detail', [SensorController::class, 'getDetailSensorDataAndroid']);
+    Route::get('/records', [SensorController::class, 'getDetailSensorDataRecords']);
 });
