@@ -123,7 +123,7 @@ class PatientMonitoringRepository implements MonitoringRepository
     public function getAllRecord()
     {
         $patients = $this->patientModel->get(['id', 'name', 'tanggal_lahir', 'alamat'])->toArray();
-        $medicalRecords = $this->medicalRecord->get(['id', 'patient_id', 'averrage_spo2', 'averrage_bpm', 'konfirmasi', 'created_at', 'updated_at'])->toArray();
+        $medicalRecords = $this->medicalRecord->get(['id', 'patient_id', 'averrage_spo2', 'averrage_bpm', 'url', 'konfirmasi', 'created_at', 'updated_at'])->toArray();
 
         foreach ($patients as $key => $value) {
             $medicalRecord = [];

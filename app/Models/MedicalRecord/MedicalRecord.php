@@ -18,7 +18,8 @@ class MedicalRecord extends Model
         'averrage_bpm',
         'recomendation',
         'konfirmasi',
-        'last_monitoring_code'
+        'last_monitoring_code',
+        'url',
     ];
 
     /**

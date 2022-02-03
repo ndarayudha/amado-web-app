@@ -83,4 +83,22 @@ class SensorController extends Controller
             'data_pengukuran' => $detail_sensor
         ]);
     }
+
+
+    public function konfirmasiRekamMedis(Request $request)
+    {
+        $record = MedicalRecord::find($request->id);
+
+        $record->update([
+            'konfirmasi' => 'Terkonfirmasi',
+            'url' => $request->url,
+            'recomendation' => $request->rekomendasi
+        ]);
+
+        return response()->json([
+            'code' => 200,
+            'pesan' => 'rekam medis terkonfirmasi',
+            'record'  => $record
+        ]);
+    }
 }

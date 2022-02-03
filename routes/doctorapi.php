@@ -125,3 +125,16 @@ Route::prefix('/sensor')->group(function () {
     Route::get('/detail', [SensorController::class, 'getDetailSensorDataAndroid']);
     Route::get('/records', [SensorController::class, 'getDetailSensorDataRecords']);
 });
+
+
+// records
+Route::prefix('/records')->group(function () {
+    Route::post('/upload', function() {
+        return response()->json([
+            'code' => 200,
+            'pesan' => 'konfirmasi berhasil'
+        ]); 
+    });
+    Route::post('/konfirmasi', [SensorController::class, 'konfirmasiRekamMedis']);
+    Route::post('/konfirmasi/mail', [MailAwsController::class, 'emailKonfirmasiRekamMedis']);
+});
